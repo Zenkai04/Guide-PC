@@ -685,3 +685,38 @@ La configuration retenue doit être la solution la moins coûteuse qui satisfait
 La décision finale doit toujours pouvoir être formulée ainsi :
 
 > Ce composant a été retenu parce qu’il satisfait les exigences obligatoires, apporte un bénéfice mesurable dans les usages définis, présente un coût proportionné à ce bénéfice et s’intègre dans une architecture cohérente avec la durée de vie et la stratégie d’évolution du système.
+
+---
+
+## 23. Extension : le moteur d’acquisition
+
+Les sections précédentes définissent un moteur qui répond à une première question :
+
+> Quelle configuration constitue le meilleur choix ?
+
+Ce moteur reste inchangé. Il détermine toujours **quoi** acheter, selon la chaîne :
+
+```text
+Besoin → mission → contraintes → critères éliminatoires → candidats
+→ compatibilités → dimensionnement → mesures → interactions
+→ budget → notation → Pareto → configurations candidates
+→ rapport de décision
+```
+
+Le guide répond désormais également à une seconde question :
+
+> Sachant ce que nous voulons acheter, quand faut-il effectivement déclencher l’achat ?
+
+Cette seconde question est traitée par un moteur d’acquisition, qui s’exécute après le moteur de composition, en boucle, jusqu’à ce que tous les achats soient sécurisés :
+
+```text
+Moteur de conception → configurations candidates → moteur d’exécution du marché → achats
+```
+
+Le guide comporte donc trois moteurs successifs :
+
+1. **Moteur d’ingénierie** — de quoi ai-je réellement besoin ? (documents `01` à `03`)
+2. **Moteur de composition** — quelle combinaison de composants répond le mieux à ce besoin ? (documents `04` à `20`)
+3. **Moteur d’acquisition** — quand et chez qui dois-je acheter chaque composant pour obtenir cette configuration avec un coût et un risque acceptables ? (documents `21` à `29`)
+
+Ce troisième moteur est décrit à partir de `21-Moteur-dacquisition.md`. Il ne modifie et ne remplace aucune règle définie dans les documents `01` à `20` ; il en exploite le résultat pour arbitrer entre le risque de payer trop cher en achetant trop tôt et le risque de perdre l’accès à une solution acceptable en attendant trop longtemps.

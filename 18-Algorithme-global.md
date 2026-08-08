@@ -321,3 +321,13 @@ Le moteur ne cherche pas à déterminer la configuration la plus performante.
 Il cherche à identifier les configurations les plus adaptées à une mission donnée, en tenant compte des contraintes, des interactions, des risques, du coût total, de la durée de vie et du niveau de confiance des informations utilisées.
 
 Chaque recommandation est le résultat d'un processus d'ingénierie transparent, justifiable et reproductible.
+
+---
+
+# 18. Prolongement : du plan de conception au plan d'achat
+
+Le présent document s'arrête à la production du rapport final et des configurations candidates. Il répond uniquement à la question : quelle configuration constitue le meilleur choix ?
+
+Une fois ce résultat produit, un second moteur détermine quand et chez qui déclencher effectivement chaque achat, à partir des données de marché (prix, stock, disponibilité). Ce moteur d'acquisition est décrit à partir de `21-Moteur-dacquisition.md`.
+
+Il s'exécute après le pipeline décrit ci-dessus et ne modifie aucune des étapes qui précèdent.

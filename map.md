@@ -20,4 +20,14 @@ Guide-Selection-PC/
 ├── 17-Notation-et-classement.md
 ├── 18-Algorithme-global.md
 ├── 19-Rapport-de-decision.md
-└── 20-Etude-de-cas.md
+├── 20-Etude-de-cas.md
+│
+├── 21-Moteur-dacquisition.md
+├── 22-Temporalite-des-prix.md
+├── 23-Disponibilite-et-substituabilite.md
+├── 24-Regret-et-valeur-attente.md
+├── 25-Dependances-et-priorite-achat.md
+├── 26-Etats-commerciaux-et-cycle-achat.md
+├── 27-Budget-immobilise-et-risque-configuration.md
+├── 28-Configurations-secours-et-checkpoints.md
+└── 29-Algorithme-acquisition-marche.md
