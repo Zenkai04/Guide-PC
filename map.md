@@ -30,4 +30,28 @@ Guide-Selection-PC/
 ├── 26-Etats-commerciaux-et-cycle-achat.md
 ├── 27-Budget-immobilise-et-risque-configuration.md
 ├── 28-Configurations-secours-et-checkpoints.md
-└── 29-Algorithme-acquisition-marche.md
+├── 29-Algorithme-acquisition-marche.md
+│
+├── 30-Manuel-operationnel-outils.md
+│   └── Protocole opérationnel des agents et outils
+│
+├── 31-Etat-operationnel.md
+│   └── État courant, agents validés et prochaine action
+│
+├── CLAUDE.md
+│   └── Instructions propres à Claude Code
+│
+├── AGENTS.md
+│   └── Instructions propres à Codex
+│
+└── Compositions/
+    └── Propositions historiques, variantes et retours critiques
+
+Lecture recommandée pour un agent CLI neuf :
+1. 31-Etat-operationnel.md
+2. map.md
+3. 30-Manuel-operationnel-outils.md
+4. fichiers du corpus pertinents pour la tâche
+
+Règle :
+Compositions/ documente l'historique des solutions ; son contenu n'est pas automatiquement approuvé.

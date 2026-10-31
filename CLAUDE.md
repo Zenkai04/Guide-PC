@@ -8,12 +8,24 @@ Tu ne disposes d'aucun contexte fiable extérieur à ce dépôt.
 
 Ne suppose pas connaître les conversations ChatGPT ou Claude Web ayant précédé cette session.
 
-Commence toujours par consulter :
+Si une mémoire automatique, une ancienne session ou une information extérieure contredit le dépôt, **le dépôt prime**.
 
-1. `map.md`
-2. `31-Etat-operationnel.md`
-3. les documents du corpus pertinents pour la tâche demandée
-4. `30-Manuel-operationnel-outils.md` pour le protocole opérationnel
+`AGENTS.md` est réservé à Codex.  
+Ne l'utilise pas comme source d'instructions pour Claude Code et n'en déduis pas ton rôle.
+
+## Bootstrap obligatoire
+
+Au début de chaque nouvelle session, **avant la première réponse substantielle**, lis obligatoirement dans cet ordre :
+
+1. `31-Etat-operationnel.md`
+2. `map.md`
+3. `30-Manuel-operationnel-outils.md`
+
+Cette étape est obligatoire même si la demande paraît simple.
+
+Ensuite seulement, consulte les documents du corpus pertinents pour la tâche demandée.
+
+Ne parcours pas tout le dépôt par défaut si `map.md` permet une lecture ciblée.
 
 Les fichiers `Compositions/` contiennent des propositions historiques et leurs critiques. Une version récente n'est pas automatiquement une décision approuvée.
 
