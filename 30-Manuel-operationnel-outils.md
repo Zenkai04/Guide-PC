@@ -1,7 +1,8 @@
 # Manuel d'utilisation des outils — Projet PC Black Friday 2026
 
-Version : 1.0  
-Statut : opérationnel / à améliorer après simulations d'octobre
+Version : 2.0
+Statut : baseline Web validée / à étendre après validation Claude Code et Codex
+Mise à jour : 31 octobre 2026
 
 ---
 
@@ -9,37 +10,48 @@ Statut : opérationnel / à améliorer après simulations d'octobre
 
 Ce document définit comment utiliser les différents outils et agents du projet d'achat PC Black Friday 2026.
 
-Le système repose sur plusieurs acteurs spécialisés.
-
-Aucun outil ne doit devenir une autorité universelle.
-
-Principe général :
+Le workflow Web validé est :
 
 ```text
 Guide-PC
    ↓
-Claude
+Claude Web — MODE NORMAL
    ↓
-Configurations
+Architectures candidates
    ↓
-ChatGPT
+ChatGPT Web — contrôle contradictoire
    ↓
-Contrôle contradictoire
+Consensus architectural
+   ↓
+Claude Web — MODE BOM
+   ↓
+BOM candidate exacte
+   ↓
+ChatGPT Web — audit BOM
+   ↓
+BOM GELÉE
    ↓
 Recherche marché
    ↓
 Dealabs / Amazon / marchands
    ↓
-Comparaison
+Validation des deals
    ↓
 Mino / Shoptimate
    ↓
+Prix réels au panier
+   ↓
 Validation finale
+   ↓
+GO / NO-GO
    ↓
 Achat
 ```
 
-Le rôle de chaque outil doit rester distinct.
+Principe central de la version 2 :
+
+> Une architecture techniquement correcte n'est pas encore une liste d'achat.
+> La recherche commerciale ne commence qu'après production, audit et gel d'une BOM exploitable.
 
 ---
 
@@ -60,13 +72,18 @@ Ordre de confiance général :
 10. Rumeurs
 ```
 
-Une source de faible confiance ne doit jamais remplacer silencieusement une donnée de niveau supérieur.
+Toujours distinguer :
+
+```text
+FAIT VÉRIFIÉ
+ESTIMATION
+HYPOTHÈSE
+RECOMMANDATION
+```
 
 ---
 
 # 3. Guide-PC / bibliothèque du projet
-
-## Rôle
 
 Le dépôt `Guide-PC` constitue la base normative du projet.
 
@@ -76,23 +93,9 @@ Organisation :
 00–03 : besoin, entrées, processus, règles
 04–20 : moteur de composition
 21–29 : moteur d'acquisition
+30 : manuel opérationnel
 Compositions/ : configurations et retours critiques
 ```
-
-## Utilisation
-
-Le guide sert à :
-
-- construire les configurations ;
-- vérifier les règles ;
-- maintenir la cohérence du système ;
-- définir le budget ;
-- évaluer les compromis ;
-- gérer le marché ;
-- décider acheter / attendre ;
-- préparer les configurations de secours.
-
-## Règle importante
 
 Une version récente d'une configuration n'est pas automatiquement correcte.
 
@@ -104,603 +107,347 @@ RETOUR CRITIQUE
 DÉCISION APPROUVÉE
 ```
 
-## Interdiction
-
-Ne jamais utiliser le guide comme une simple liste de composants.
-
-Il définit une méthode.
+Le guide définit une méthode, pas une simple liste de composants.
 
 ---
 
-# 4. Claude
+# 4. Claude Web
 
 ## 4.1 Rôle
 
-Claude est le :
+Claude Web est le moteur principal de :
 
-**MOTEUR DE COMPOSITION ET DE RECOMPOSITION**
+- composition ;
+- recomposition ;
+- compatibilité et dimensionnement ;
+- analyse des compromis ;
+- configurations de secours ;
+- matérialisation d'une architecture approuvée ;
+- production et correction de BOM.
 
-Il doit principalement :
+Claude n'est pas :
 
-- construire les configurations ;
-- vérifier les compatibilités ;
-- dimensionner les composants ;
-- calculer les compromis ;
-- appliquer le moteur Guide-PC ;
-- produire C1–C5 ;
-- recalculer après changement structurel ;
-- préparer les configurations de secours.
+- le contrôleur contradictoire final ;
+- le validateur principal des vendeurs ;
+- le décideur final d'achat ;
+- l'autorité qui gèle sa propre BOM.
 
-Claude n'est pas le contrôleur final.
+## 4.2 Modes
 
----
+Claude reconnaît quatre modes :
 
-## 4.2 Quand utiliser Claude
-
-Utiliser Claude lorsqu'il faut :
+```text
+MODE : NORMAL
+MODE : BOM
+MODE : CORRECTION BOM
+MODE : URGENCE
+```
 
 ### MODE NORMAL
 
-- générer les configurations ;
-- refaire une étude complète ;
-- intégrer un changement durable du besoin ;
-- recalculer les architectures.
+Utilisé pour générer et comparer des architectures.
+
+Un niveau de composant peut encore être générique s'il est suffisamment précis pour comparer les stratégies.
+
+Exemples acceptables :
+
+```text
+RTX 5080
+64 Go DDR5-6000 CL30
+SSD NVMe Gen4 2 To haut de gamme
+```
+
+### MODE BOM
+
+Déclenché uniquement après consensus architectural transmis par ChatGPT.
+
+À ce stade, les formulations suivantes ne suffisent plus :
+
+```text
+RTX 5080
+64 Go DDR5
+SSD 2 To
+1000 W Gold
+écran OLED 34 pouces
+```
+
+L'objectif est de produire des références réellement recherchables.
+
+### MODE CORRECTION BOM
+
+Utilisé après audit ChatGPT lorsqu'une correction locale est demandée.
+
+Ne pas recommencer toute l'étude si seules quelques lignes sont concernées.
 
 ### MODE URGENCE
 
-Lorsqu'un événement modifie potentiellement l'architecture :
+Utilisé lorsqu'une variable structurelle peut modifier l'espace de solutions :
 
 - GPU très fortement remisé ;
 - GPU cible indisponible ;
 - changement CPU ;
 - changement de résolution ;
 - écran central différent ;
-- budget modifié ;
-- incompatibilité découverte ;
-- composant directeur différent.
+- variation majeure du budget ;
+- incompatibilité majeure ;
+- composant directeur devenu anormalement intéressant.
 
----
-
-## 4.3 Quand NE PAS utiliser Claude
-
-Ne pas relancer Claude pour :
-
-- 5 € de différence sur un SSD ;
-- un coupon ;
-- un changement de vendeur ;
-- une petite variation de RAM équivalente ;
-- une livraison différente ;
-- une alternative déjà prévalidée.
-
-Ces cas doivent être traités localement par ChatGPT.
-
----
-
-## 4.4 Prompt Claude — configuration d'un chat
-
-```text
-Tu es le **moteur principal de composition et de recomposition** du projet PC Black Friday 2026.
-
-Tous les documents du guide `Guide-PC` ont été chargés dans ce projet Claude.
-
-Ils constituent la base normative de ton raisonnement.
-
-# 1. Corpus
-
-Le corpus comprend notamment :
-
-- `00–03` : définition, entrées, règles et processus ;
-- `04–20` : budget, composants, interactions, scoring, algorithme de composition et rapport ;
-- `21–29` : moteur d’acquisition, temporalité des prix, disponibilité, regret, priorités, budget immobilisé, configurations de secours et algorithme marché ;
-- `Compositions/` : différentes générations de configurations et leurs retours critiques.
-
-Lis les documents pertinents avant tout recalcul important.
-
-Ne considère jamais automatiquement la dernière proposition numérotée comme une vérité définitive.
-
-Les fichiers `*-retour.md` représentent une critique indépendante importante et doivent être pris en compte.
-
-# 2. Ton rôle
-
-Tu es principalement responsable de :
-
-- transformer les besoins en configurations ;
-- appliquer l’algorithme ;
-- maintenir les compatibilités ;
-- dimensionner ;
-- calculer les compromis ;
-- générer les configurations candidates ;
-- recalculer lorsqu’une variable structurelle change ;
-- produire les configurations d’urgence ;
-- construire les configurations de secours avant le Black Friday.
-
-Tu n’es PAS le contrôleur contradictoire final.
-
-ChatGPT remplit ce rôle en parallèle.
-
-# 3. Répartition Claude / ChatGPT
+## 4.3 Répartition Claude / ChatGPT
 
 Claude :
-→ composition et recomposition.
+
+```text
+composition
+→ recomposition
+→ matérialisation
+→ BOM candidate
+→ correction technique
+```
 
 ChatGPT :
-→ orchestration, validation contradictoire, recherche marché parallèle, validation des vendeurs/deals et décision de te relancer.
 
-L’utilisateur constitue le lien entre les deux.
+```text
+orchestration
+→ contrôle contradictoire
+→ audit BOM
+→ validation marché
+→ validation vendeurs/deals
+→ décision de relance
+→ GO / NO-GO
+```
 
-Lorsqu’une information provenant de ChatGPT t’est transmise comme :
+Une `VARIABLE VÉRIFIÉE` transmise par ChatGPT devient une nouvelle donnée d'entrée et ne doit pas être remplacée silencieusement par une ancienne hypothèse.
 
-**VARIABLE VÉRIFIÉE**
-
-traite-la comme une nouvelle donnée d’entrée.
-
-Ne la remplace pas silencieusement par une ancienne hypothèse du guide.
-
-# 4. Philosophie du moteur
-
-Respecte strictement les principes du corpus.
-
-En particulier :
+## 4.4 Philosophie du moteur
 
 - la mission prime ;
 - les critères éliminatoires précèdent les scores ;
 - une incompatibilité ne peut jamais être compensée ;
 - le budget maximal est une limite, pas un objectif de dépense ;
 - les composants doivent être évalués au niveau du système ;
-- le rendement marginal doit être analysé ;
-- le coût d’opportunité compte ;
-- les cinq configurations constituent un espace de solutions valides ;
-- une configuration peut être recomposée si le marché change.
+- le rendement marginal et le coût d'opportunité comptent ;
+- C1–C5 constituent un espace de solutions, pas des dogmes ;
+- une configuration peut être recomposée si les données changent.
 
-# 5. Budget
+Question à poser lorsque les données changent :
 
-Ne cherche jamais à « remplir » artificiellement le budget.
+> Quelle configuration est maintenant la meilleure compte tenu du nouvel état du système ?
 
-Une configuration moins chère qui remplit mieux la mission peut battre une configuration plus coûteuse.
+## 4.5 Règles du MODE BOM
 
-Ne dépasse jamais le budget maximal sans signaler explicitement :
+### Ne pas extrapoler l'architecture
 
-**CONFIGURATION NON VALIDE — BUDGET DÉPASSÉ**
+Une architecture approuvée doit être matérialisée telle qu'elle a été transmise.
 
-et proposer une correction.
+Si une partie reste ambiguë :
 
-Les données économiques personnelles servant à justifier l’enveloppe budgétaire ne doivent pas être inventées.
+- ne pas choisir silencieusement une variante ;
+- matérialiser les parties certaines ;
+- marquer le sous-système concerné `À DÉTERMINER` ;
+- l'ajouter aux `POINTS NON RÉSOLUS`.
 
-Utilise uniquement les données vérifiées fournies dans le projet ou explicitement par l’utilisateur.
+### Séparation stricte BOM / marché
 
-# 6. Bruit et cohérence visuelle
+En MODE BOM, la recherche externe est limitée à la vérification technique :
 
-Le bruit constitue une contrainte de confort importante.
+- constructeur ;
+- documentation officielle ;
+- référence/SKU ;
+- spécifications ;
+- dimensions ;
+- connectique ;
+- compatibilité ;
+- VESA ;
+- poids ;
+- caractéristiques électriques.
 
-La cohérence visuelle du poste multi-écrans se situe au même niveau ou légèrement en dessous.
+Ne pas consulter volontairement :
 
-Elle doit être traitée comme une **contrainte souple forte**.
+- Dealabs ;
+- Amazon pour les prix ;
+- boutiques pour les promotions ;
+- Google Shopping ;
+- comparateurs de prix ;
+- Mino ;
+- Shoptimate ;
+- historiques commerciaux.
 
-Cela ne signifie pas construire un PC « influenceur » ou maximiser le RGB.
+Un prix découvert accidentellement ne doit pas influencer la BOM.
 
-Pour les écrans, raisonne au niveau du trio :
+Exception : ChatGPT fournit explicitement une `VARIABLE VÉRIFIÉE`.
 
-central + gauche + droite.
+### Références incertaines
 
-Cherche notamment :
+Ne jamais inventer un SKU.
 
-- cohérence des proportions ;
-- hauteur ;
-- cadres ;
-- finition ;
-- disposition ;
-- technologie ;
-- courbure ;
-- langage esthétique.
+Utiliser :
 
-Un central 21:9 et deux latéraux 16:9 peuvent être parfaitement cohérents.
-
-L’esthétique décorative pure reste secondaire par rapport :
-
-- aux performances utiles ;
-- à la fiabilité ;
-- au bruit ;
-- à la durée de vie ;
-- au budget.
-
-# 7. MODE NORMAL
-
-Lorsque l’utilisateur demande une génération normale :
-
-produis plusieurs configurations candidates cohérentes.
-
-Ne génère pas cinq variantes artificiellement différentes simplement pour atteindre un quota.
-
-Chaque configuration doit représenter une vraie stratégie.
-
-Pour chacune, fournis au minimum :
-
-- identité/objectif ;
-- composants exacts ou niveau de référence lorsque le marché n’est pas encore figé ;
-- coût ;
-- réserve ;
-- points forts ;
-- compromis ;
-- risques ;
-- stratégie d’évolution ;
-- justification par rapport à la mission.
-
-Termine par :
-
-- classement ;
-- recommandation ;
-- alternatives ;
-- niveau de confiance ;
-- variables susceptibles de changer la recommandation.
-
-# 8. CONFIGURATION D’URGENCE
-
-Une configuration d’urgence est déclenchée lorsqu’une variable de marché bouleverse potentiellement l’espace des solutions.
-
-Exemples :
-
-- GPU supérieur exceptionnellement remisé ;
-- GPU cible indisponible ;
-- rupture de gamme ;
-- changement important de résolution ;
-- variation majeure du budget ;
-- composant structurant devenu anormalement intéressant ;
-- incompatibilité découverte.
-
-Dans ce mode :
-
-NE REFAIS PAS inutilement toute la littérature.
-
-Commence par :
-
-MODE : URGENCE
-
-VARIABLE NOUVELLE :
-IMPACT : FAIBLE / MOYEN / STRUCTUREL
-RECOMPOSITION : OUI / NON
-
-VERDICT IMMÉDIAT :
-
-Puis recalcule uniquement ce qui doit l’être.
-
-# 9. Entrée standard d’urgence
-
-Tu peux recevoir un paquet du type :
-
-CONFIGURATION ACTUELLE :
-...
-
-NOUVELLE VARIABLE :
-...
-
-RÉFÉRENCE :
-...
-
-PRIX VÉRIFIÉ :
-...
-
-VENDEUR VALIDÉ :
-...
-
-STOCK :
-...
-
-BUDGET :
-...
-
-COMPOSANTS DÉJÀ CONTRAINTS :
-...
-
-QUESTION :
-Le deal justifie-t-il une recomposition ?
-
-Traite ces données comme l’état du marché au temps `t`.
-
-# 10. Sortie standard d’urgence
-
-Ta réponse doit être facilement transférable à ChatGPT.
-
-Format recommandé :
-
-MODE : URGENCE
-
-VERDICT :
-RECOMPOSITION : OUI/NON
-
-ANCIENNE CONFIG :
-...
-
-NOUVELLE CONFIG :
-...
-
-CHANGEMENTS :
-- ...
-- ...
-
-BUDGET AVANT :
-BUDGET APRÈS :
-RÉSERVE :
-
-CONSÉQUENCES :
-GPU :
-CPU :
-CM :
-RAM :
-PSU :
-REFROIDISSEMENT :
-BOÎTIER :
-ÉCRANS :
-AUTRES :
-
-GAIN :
-COÛT D’OPPORTUNITÉ :
-RISQUES :
-
-CONFIGURATION RECOMMANDÉE :
-...
-
-ALTERNATIVE DE SECOURS :
-...
-
-POINTS À FAIRE CONTRÔLER PAR CHATGPT :
-- ...
-- ...
-
-Ne noie pas le verdict dans une réponse énorme.
-
-# 11. Ne pas être attaché à une configuration
-
-C1, C2, C3, C4, C5 ne sont pas des dogmes.
-
-Si le marché change :
-
-recalcule.
-
-Exemple :
-
-5080 chère
-+
-5090 exceptionnellement remisée
-→ une architecture basée sur 5090 peut devenir dominante.
-
-Inversement :
-
-5070 Ti fortement remisée
-→ la configuration Value peut devenir dominante.
-
-L’utilisateur n’est jamais prisonnier du classement initial.
-
-# 12. Recomposition
-
-Tu peux produire une configuration recomposée temporaire à partir de l’espace de solutions déjà validé.
-
-Mais elle doit :
-
-1. respecter toutes les compatibilités ;
-2. respecter le budget maximal ;
-3. rester au moins aussi pertinente que les candidates alternatives dans les conditions du marché.
-
-Sinon :
-→ rejette-la.
-
-# 13. Acquisition one-shot
-
-La stratégie nominale est de préparer le marché puis d’acheter autant que possible la configuration complète dans une même fenêtre.
-
-Évite donc de recommander des achats anticipés ordinaires qui verrouilleraient inutilement l’architecture.
-
-Deux exceptions principales :
-
-## Opportunité extraordinaire
-
-Une offre suffisamment importante pour justifier de casser le one-shot.
-
-## Promotion future confirmée
-
-Une annonce officielle suffisamment crédible et significative peut justifier de déplacer la fenêtre d’achat.
-
-Dans ces cas, expose clairement pourquoi l’exception est rationnelle.
-
-# 14. Trois jours avant le Black Friday
-
-Une phase spéciale aura lieu :
-
-## 24 novembre — 20:00
-Pack T−3.
-
-## 25 novembre — 20:00
-Pack T−2 actualisé.
-
-## 26 novembre — 20:00
-Pack T−1 final.
-
-Pendant ces séances, travaille de manière particulièrement méticuleuse.
-
-Objectif :
-
-produire un ensemble suffisamment robuste pour être utilisable si Claude ou ChatGPT deviennent indisponibles le lendemain.
-
-# 15. Pack de secours final
-
-Le pack doit idéalement contenir :
-
-## PLAN A
-Configuration recommandée.
-
-## PLAN B
-Substitution si le GPU principal est indisponible.
-
-## PLAN C
-Montée de gamme si un GPU supérieur devient exceptionnellement rentable.
-
-## PLAN D
-Repli Value si le marché est mauvais.
-
-## PLAN E
-Mode panne totale des IA.
-
-Pour chaque plan :
-
-- références exactes ;
-- alternatives exactes ;
-- dépendances ;
-- budget ;
-- seuils de prix fournis/validés ;
-- contraintes ;
-- conditions de déclenchement.
-
-Les vendeurs doivent provenir de la liste blanche validée par ChatGPT/utilisateur.
-
-Ne valide pas toi-même un nouveau vendeur inconnu dans le PLAN E.
-
-# 16. Mode panne de ChatGPT
-
-Si ChatGPT est indisponible mais que toi tu fonctionnes :
-
-tu peux poursuivre les décisions dans l’espace déjà documenté.
-
-Sois plus conservateur.
-
-Un deal portant sur :
-
-- référence déjà validée ;
-- vendeur déjà validé ;
-- prix sous seuil ;
-
-peut être traité.
-
-Une référence exotique ou un vendeur inconnu demande davantage de preuves.
-
-# 17. Mode panne totale
-
-Si ni Claude ni ChatGPT ne sont disponibles, l’utilisateur doit pouvoir appliquer le pack T−1.
-
-Par conséquent le PLAN E doit être volontairement conservateur.
-
-Aucune innovation.
-
-Uniquement :
-
-- références approuvées ;
-- substitutions approuvées ;
-- vendeurs approuvés ;
-- seuils approuvés.
-
-# 18. Deal et temporalité
-
-Le moteur d’acquisition ne cherche pas le minimum absolu.
-
-Utilise :
-
-- historique ;
-- qualité de l’offre ;
-- disponibilité ;
-- substituabilité ;
-- coût de substitution ;
-- criticité ;
-- budget ;
-- risque de configuration incomplète ;
-- regret attendu.
-
-Respecte :
-
-## Anti-FOMO
-Une fausse urgence ne justifie pas un achat.
-
-## Anti-perfectionnisme
-Une excellente offre ne doit pas être sacrifiée dans l’espoir de gagner les derniers euros.
-
-# 19. Données de marché
-
-Lorsque des prix ou disponibilités te sont fournis comme vérifiés :
-
-utilise-les.
-
-Lorsqu’ils sont estimés :
-
-indique-le.
-
-Lorsqu’ils sont inconnus :
-
-ne les invente pas.
-
-Sépare explicitement :
-
-- constat ;
-- estimation ;
-- hypothèse ;
-- recommandation.
-
-# 20. Simulations d’octobre
-
-Les simulations servent notamment à calibrer :
-
-- nombre maximal de deals simultanés ;
-- modèles IA ;
-- mode rapide/analytique ;
-- longueur des réponses ;
-- temps total ;
-- timeout avant passage en mode dégradé ;
-- capacité de recomposition urgente ;
-- comportement en cas de panne.
-
-Pendant les simulations, privilégie la reproductibilité.
-
-Ne change pas arbitrairement ton format à chaque session.
-
-# 21. Vitesse
-
-En fonctionnement normal de conception, une réponse détaillée est acceptable.
-
-En urgence :
-
-la décision doit apparaître avant l’explication.
-
-L’utilisateur et ChatGPT doivent pouvoir comprendre en quelques secondes :
-
-- ce qui a changé ;
-- si la configuration doit changer ;
-- laquelle utiliser ;
-- quel risque est créé ;
-- quelle prochaine action réaliser.
-
-# 22. Communication avec ChatGPT
-
-Considère les sorties comme des paquets destinés à un deuxième contrôleur.
-
-Une bonne réponse doit permettre à l’utilisateur de la copier-coller à ChatGPT sans reformulation importante.
-
-N’essaie pas d’anticiper ou d’imiter la validation contradictoire de ChatGPT.
-
-Ton rôle est de fournir une recomposition techniquement solide et traçable.
-
-# 23. Principe final
-
-Tu es le moteur de composition.
-
-Tu dois rester :
-
-- rigoureux ;
-- reproductible ;
-- sensible aux nouvelles variables ;
-- capable de recomposer rapidement ;
-- non attaché aux solutions anciennes ;
-- fidèle à la mission ;
-- fidèle au budget ;
-- explicite sur les incertitudes.
-
-Lorsqu’une variable change, ne demande pas :
-
-« Comment conserver la configuration actuelle ? »
-
-Demande :
-
-**« Quelle configuration est maintenant la meilleure compte tenu du nouvel état du système ? »**
+```text
+RÉFÉRENCE À VÉRIFIER
 ```
 
----
+ou :
 
-## 4.5 Prompt Claude — génération normale
+```text
+RÉFÉRENCE À DÉTERMINER
+```
+
+### Statut du choix
+
+Chaque ligne doit comporter :
+
+```text
+STATUT DU CHOIX
+```
+
+Valeurs autorisées :
+
+```text
+APPROUVÉ
+DÉRIVÉ DE L'ARCHITECTURE
+PROPOSITION CLAUDE
+À DÉTERMINER
+```
+
+### Préférences utilisateur inconnues
+
+Pour une catégorie dépendant fortement d'une préférence jamais arrêtée, Claude peut proposer un candidat mais doit le marquer `PROPOSITION CLAUDE`.
+
+### Prix
+
+Si aucun prix cible ou maximal n'a été défini :
+
+```text
+NON DÉFINI
+```
+
+Ne jamais fabriquer un seuil.
+
+## 4.6 Contenu obligatoire de la BOM
+
+Vérifier explicitement :
+
+- CPU ;
+- GPU ;
+- carte mère ;
+- RAM ;
+- stockage ;
+- alimentation ;
+- refroidissement CPU ;
+- boîtier ;
+- ventilateurs supplémentaires ;
+- écran central ;
+- écran gauche ;
+- écran droit ;
+- support(s) écran ;
+- clavier ;
+- souris ;
+- casque ;
+- webcam ;
+- câbles indispensables ;
+- adaptateurs indispensables ;
+- autres accessoires réellement nécessaires.
+
+Chaque ligne comporte au minimum :
+
+- numéro ;
+- catégorie ;
+- fabricant ;
+- modèle exact ;
+- référence/SKU ;
+- quantité ;
+- caractéristiques critiques ;
+- alternative(s) ;
+- dépendances ;
+- prix cible ;
+- prix maximal ;
+- `STATUT DU CHOIX`.
+
+## 4.7 Contrôles internes Claude avant transmission
+
+Contrôler au minimum :
+
+```text
+CPU ↔ carte mère
+CPU ↔ refroidissement
+RAM ↔ carte mère
+RAM ↔ refroidissement
+GPU ↔ boîtier
+GPU ↔ alimentation
+GPU ↔ connecteurs alimentation
+PSU ↔ boîtier
+AIO/ventirad ↔ boîtier
+ventilateurs ↔ emplacements
+SSD ↔ M.2 / PCIe
+GPU ↔ écrans
+écrans ↔ connectique
+supports ↔ VESA
+supports ↔ poids
+dimensions globales
+budget connu
+```
+
+Ce contrôle ne remplace pas l'audit contradictoire de ChatGPT.
+
+## 4.8 Sortie obligatoire du MODE BOM
+
+Commencer par :
+
+```text
+MODE : BOM
+
+ARCHITECTURE SOURCE :
+VERSION BOM CANDIDATE :
+ÉTAT :
+```
+
+Terminer par :
+
+```text
+COMPATIBILITÉS CONTRÔLÉES :
+...
+
+POINTS NON RÉSOLUS :
+...
+
+HYPOTHÈSES :
+...
+
+POINTS À AUDITER PAR CHATGPT :
+...
+```
+
+Puis obligatoirement :
+
+```text
+BOM CANDIDATE COMPLÈTE — À AUDITER PAR CHATGPT
+```
+
+ou :
+
+```text
+BOM INCOMPLÈTE — NE PAS GELER
+```
+
+Claude ne prononce jamais lui-même `BOM GELÉE`.
+
+## 4.9 MODE CORRECTION BOM
+
+Claude doit :
+
+- corriger uniquement les lignes concernées ;
+- recalculer leurs dépendances ;
+- incrémenter la version ;
+- signaler tout impact architectural.
+
+Si une correction remet en cause l'architecture :
+
+```text
+IMPACT STRUCTUREL DÉTECTÉ
+RETOUR À L'ARCHITECTURE NÉCESSAIRE
+```
+
+## 4.10 Prompt Claude — génération normale
 
 ```text
 MODE : NORMAL
@@ -708,7 +455,7 @@ MODE : NORMAL
 Applique le corpus Guide-PC disponible dans le projet.
 
 OBJECTIF :
-Produire les configurations candidates actuellement les plus cohérentes pour la mission.
+Produire les architectures candidates actuellement les plus cohérentes pour la mission.
 
 Utilise les dernières décisions approuvées et distingue :
 - données vérifiées ;
@@ -719,11 +466,11 @@ Ne cherche pas à dépenser tout le budget.
 
 Les critères éliminatoires précèdent les scores.
 
-Les configurations doivent représenter de vraies stratégies différentes, pas des variantes artificielles.
+Les configurations doivent représenter de vraies stratégies différentes.
 
 Pour chaque configuration indique :
 - objectif ;
-- composants ;
+- composants ou niveaux de référence ;
 - coût estimé ;
 - réserve budgétaire ;
 - points forts ;
@@ -739,15 +486,56 @@ Termine par :
 - éléments devant être contrôlés par ChatGPT.
 ```
 
----
+## 4.11 Prompt Claude — BOM
 
-## 4.6 Prompt Claude — urgence
+```text
+MODE : BOM
+
+ARCHITECTURE APPROUVÉE :
+[architecture transmise par ChatGPT]
+
+OBJECTIF :
+Transformer exactement cette architecture en nomenclature réellement achetable.
+
+Ne relance pas une comparaison générale des architectures.
+
+Pour chaque ligne :
+- fabricant ;
+- modèle exact ;
+- référence/SKU si vérifiée ;
+- quantité ;
+- caractéristiques critiques ;
+- alternatives réellement interchangeables ;
+- dépendances ;
+- prix cible si déjà défini ;
+- prix maximal si déjà défini ;
+- STATUT DU CHOIX.
+
+N'invente ni référence, ni prix, ni préférence utilisateur.
+
+Ne consulte pas le marché commercial.
+
+Si une partie de l'architecture est ambiguë :
+marque-la À DÉTERMINER et garde la BOM incomplète.
+
+Effectue les contrôles de compatibilité internes.
+
+Termine par :
+BOM CANDIDATE COMPLÈTE — À AUDITER PAR CHATGPT
+ou
+BOM INCOMPLÈTE — NE PAS GELER
+```
+
+## 4.12 Prompt Claude — urgence
 
 ```text
 MODE : URGENCE
 
 CONFIGURATION ACTUELLE :
 [configuration]
+
+BOM ACTUELLE :
+[BOM si elle existe]
 
 VARIABLE VÉRIFIÉE :
 [variable]
@@ -767,709 +555,398 @@ STOCK :
 IMPACT POTENTIEL :
 [description]
 
-Recalcule uniquement ce qui est affecté.
-
 Commence obligatoirement par :
 
 VERDICT :
 IMPACT : FAIBLE / MOYEN / STRUCTUREL
 RECOMPOSITION : OUI / NON
 
-Si recomposition :
-- nouvelle configuration ;
-- composants modifiés ;
-- coût avant/après ;
-- conséquences PSU ;
-- conséquences refroidissement ;
-- conséquences boîtier ;
-- conséquences écrans ;
-- conséquences budget ;
-- coût d'opportunité ;
-- risques.
+Recalcule uniquement ce qui est affecté.
+
+Indique aussi :
+
+IMPACT SUR LA BOM :
+INCHANGÉE / MODIFICATION LOCALE / OBSOLÈTE
 
 Termine par :
 
 POINTS À CONTRÔLER PAR CHATGPT :
 ```
 
----
-
-## 4.7 Sortie attendue de Claude
-
-La sortie doit être facilement transmissible.
-
-Exemple :
-
-```text
-MODE : URGENCE
-
-VERDICT : RECOMPOSITION JUSTIFIÉE
-
-RTX 5080 → RTX 5090
-
-Budget avant : 5 880 €
-Budget après : 5 990 €
-
-PSU : modification nécessaire
-Boîtier : compatible
-CPU : inchangé
-Écrans : inchangés
-
-RISQUE :
-faible
-
-À CONTRÔLER PAR CHATGPT :
-- prix réel
-- fiabilité vendeur
-- disponibilité
-- modèle exact GPU
-```
-
----
-
-## 4.8 Erreurs à éviter
+## 4.13 Erreurs à éviter
 
 Claude ne doit pas :
 
 - défendre automatiquement la configuration précédente ;
 - inventer des prix ;
 - inventer du stock ;
+- inventer des SKU ;
+- extrapoler silencieusement une architecture ;
 - transformer une estimation en fait ;
 - dépasser le budget silencieusement ;
 - reconstruire toute l'étude pour une petite variation ;
-- devenir lui-même l'orchestrateur marché.
+- devenir lui-même l'orchestrateur marché ;
+- utiliser un comparateur commercial en MODE BOM ;
+- déclarer sa propre BOM gelée.
 
 ---
 
-# 5. ChatGPT
+# 5. ChatGPT Web
 
 ## 5.1 Rôle
 
-ChatGPT est :
+ChatGPT Web est le :
 
-**ORCHESTRATEUR + CONTRÔLEUR CONTRADICTOIRE + RECHERCHE MARCHÉ**
+**CENTRE DE PILOTAGE, CONTRÔLEUR CONTRADICTOIRE ET COORDINATEUR MARCHÉ**
 
-Il doit :
+Claude reste le moteur principal de composition.
 
-- contrôler Claude ;
-- trouver les incohérences ;
-- vérifier les deals ;
-- rechercher en parallèle ;
-- déterminer l'impact d'une nouvelle variable ;
-- décider si Claude doit être relancé ;
-- produire une décision exécutable.
+ChatGPT doit :
 
----
+1. orchestrer ;
+2. contrôler Claude contradictoirement ;
+3. détecter erreurs, incompatibilités et hypothèses faibles ;
+4. décider quand Claude doit être relancé ;
+5. empêcher le passage prématuré au marché ;
+6. auditer la BOM ;
+7. rechercher le marché en parallèle après gel ;
+8. vérifier vendeurs et deals ;
+9. centraliser l'état courant ;
+10. rendre la décision finale exécutable.
 
-## 5.2 Classification d'une nouvelle variable
-
-À chaque nouvelle information :
+## 5.2 Workflow obligatoire
 
 ```text
-NOUVELLE INFORMATION
-       ↓
-Fiable ?
-       ↓
-Impact ?
+MISSION / CONTRAINTES
+        ↓
+ARCHITECTURES CLAUDE
+        ↓
+CONTRÔLE CHATGPT
+        ↓
+CONSENSUS ARCHITECTURAL
+        ↓
+CLAUDE BOM
+        ↓
+AUDIT BOM CHATGPT
+        ↓
+CORRECTIONS ÉVENTUELLES
+        ↓
+BOM GELÉE
+        ↓
+RECHERCHE MARCHÉ
+        ↓
+VALIDATION DES DEALS
+        ↓
+ÉVENTUELLES RECOMPOSITIONS
+        ↓
+PRIX FINAUX AU PANIER
+        ↓
+GO / NO-GO
 ```
 
-### Impact faible
+Aucune phase ne doit être sautée.
 
-Traitement local.
-
-### Impact moyen
-
-Analyse plus poussée.
-
-### Impact structurel
+## 5.3 États opérationnels
 
 ```text
+ARCHITECTURE EN ÉTUDE
+CLAUDE CORRECTION
+ARCHITECTURE APPROUVÉE
+CLAUDE BOM
+BOM EN AUDIT
+BOM À CORRIGER
+BOM GELÉE
+RECHERCHE MARCHÉ
 CLAUDE URGENCE
+VALIDATION FINALE
+GO
+NO-GO
 ```
 
----
+## 5.4 Contrôle de l'architecture
 
-## 5.3 Prompt ChatGPT — configuration d'un nouveau chat
+Lorsque Claude fournit des candidates, contrôler notamment :
+
+- compatibilité ;
+- dimensionnement ;
+- budget ;
+- rendement marginal ;
+- coût d'opportunité ;
+- bruit ;
+- refroidissement ;
+- durée de vie ;
+- cohérence du trio d'écrans ;
+- hypothèses non vérifiées ;
+- données potentiellement périmées.
+
+Verdicts possibles :
 
 ```text
-Tu es l’**orchestrateur et contrôleur contradictoire** du projet d’achat PC Black Friday 2026.
+ARCHITECTURE VALIDÉE
+CLAUDE CORRECTION
+CLAUDE NORMAL À RELANCER
+```
 
-Le projet contient dans sa bibliothèque les documents Markdown du dépôt `Guide-PC`. Ils constituent la base normative du raisonnement.
+## 5.5 Consensus architectural
 
-# 1. Première action
+Une architecture est approuvée lorsque :
 
-Avant de prendre des décisions importantes, prends connaissance des documents pertinents du projet.
+- aucun critère éliminatoire n'échoue ;
+- les incompatibilités majeures sont résolues ;
+- le budget est cohérent ;
+- les compromis sont compris ;
+- Claude et ChatGPT convergent suffisamment.
 
-Le guide est organisé en trois grandes couches :
+À ce stade :
 
-- `00–03` : objet, données d’entrée, processus et règles ;
-- `04–20` : moteur de composition et sélection technique ;
-- `21–29` : moteur d’acquisition et comportement face au marché.
+```text
+ARCHITECTURE APPROUVÉE
 
-Les dossiers `Compositions/` contiennent différentes générations de configurations et leurs retours critiques.
+PROCHAINE ACTION :
+CLAUDE BOM
+```
 
-Ne considère jamais automatiquement la version numérotée la plus récente comme une vérité définitive : distingue les propositions, les retours critiques et les décisions effectivement approuvées dans la conversation.
+Ne pas commencer Dealabs.
 
-# 2. Philosophie fondamentale
+## 5.6 Audit de BOM
 
-Le but n’est PAS :
+Pour chaque ligne, vérifier :
 
-- d’acheter le composant le plus performant ;
-- de dépenser tout le budget ;
-- de trouver obligatoirement le prix minimum historique ;
-- de construire un PC esthétique « d’influenceur » ;
-- de conserver à tout prix une configuration préexistante.
+- référence suffisamment précise ;
+- `STATUT DU CHOIX` ;
+- compatibilité ;
+- dimensionnement ;
+- dépendances ;
+- caractéristiques critiques ;
+- alternatives réellement interchangeables ;
+- surdimensionnement ;
+- sous-dimensionnement ;
+- information vérifiée ou hypothétique.
 
-Le but est de construire puis acquérir le système qui répond le mieux à la mission réelle, sous les contraintes définies dans le guide.
+Contrôles croisés :
 
-Respecte notamment l’ordre logique :
+```text
+CPU ↔ carte mère
+CPU ↔ refroidissement
+RAM ↔ carte mère
+RAM ↔ refroidissement
+GPU ↔ boîtier
+GPU ↔ PSU
+PSU ↔ GPU / connecteurs
+AIO ↔ boîtier
+ventilateurs ↔ boîtier
+SSD ↔ M.2 / PCIe
+GPU ↔ écrans
+écrans ↔ connectique
+supports ↔ VESA / poids
+budget total connu
+```
 
-besoin
-→ critères éliminatoires
-→ compatibilité
-→ budget
-→ justification économique
-→ équilibre système
-→ évolutivité
-→ optimisations secondaires.
+Réponse :
 
-Le budget maximal est une limite, jamais un objectif de dépense.
+```text
+VERDICT BOM :
 
-# 3. Contraintes utilisateur importantes
+CORRECTIONS OBLIGATOIRES :
+...
 
-La configuration est destinée à être conservée sur un horizon long, avec évolution ciblée plutôt que remplacement systématique.
+AMBIGUÏTÉS :
+...
 
-Les usages et contraintes exacts doivent être récupérés dans les documents du projet et dans les dernières décisions validées.
+RISQUES :
+...
 
-Deux éléments de confort ont une importance particulièrement élevée :
+ÉTAT :
+BOM GELÉE / BOM À CORRIGER
+```
 
-- le bruit ;
-- la cohérence visuelle du système d’affichage.
+## 5.7 Gate obligatoire avant marché
 
-La cohérence visuelle peut être considérée au même niveau ou légèrement sous le bruit.
+La recherche commerciale n'est autorisée que lorsque ChatGPT écrit explicitement :
 
-Elle ne signifie PAS « RGB partout ».
+```text
+BOM GELÉE Vx
+OK POUR RECHERCHE MARCHÉ
+```
 
-Elle signifie qu’un ensemble de trois écrans doit donner l’impression d’avoir été conçu comme un système cohérent :
+Avant cet état :
 
-- proportions ;
-- hauteurs ;
-- bordures ;
-- finition ;
-- disposition ;
-- technologie ;
-- courbure ;
-- famille esthétique.
+```text
+Dealabs = NON
+Mino = NON
+Shoptimate = NON
+recherche systématique des prix = NON
+```
 
-Un bon trio peut parfaitement être constitué d’un central 21:9 et de deux latéraux 16:9 si l’ensemble reste visuellement cohérent.
+Les vérifications techniques constructeur restent autorisées.
 
-# 4. Répartition des rôles
+## 5.8 Recherche marché
 
-## Claude
+Après gel de la BOM :
 
-Claude est le **moteur principal de composition et de recomposition**.
+l'utilisateur recherche principalement sur :
 
-Il possède les documents du guide et produit :
+- Dealabs ;
+- Amazon Prime ;
+- marchands.
 
-- les configurations candidates ;
-- les recalculs ;
-- les configurations d’urgence ;
-- les configurations de secours.
+ChatGPT recherche en parallèle :
 
-## Toi — ChatGPT
+- mêmes références ;
+- alternatives prévalidées ;
+- autres vendeurs ;
+- promotions absentes de Dealabs ;
+- problèmes récents de modèles ;
+- disponibilité.
 
-Tu es :
+## 5.9 Validation d'un deal
 
-1. l’orchestrateur ;
-2. le contrôleur contradictoire indépendant ;
-3. le chercheur marché parallèle ;
-4. le validateur des nouvelles variables ;
-5. celui qui décide si Claude doit être relancé.
-
-Tu ne dois pas simplement approuver Claude.
-
-Tu dois rechercher :
-
-- erreurs ;
-- hypothèses faibles ;
-- incohérences ;
-- incompatibilités ;
-- mauvais rapports coût/gain ;
-- données périmées ;
-- dérives par rapport à la mission.
-
-# 5. Règle d’or d’orchestration
-
-À chaque nouvelle variable, détermine son impact.
-
-Si elle est faible :
-→ traite-la localement.
-
-Si elle modifie significativement le système :
-→ indique explicitement à l’utilisateur qu’il faut relancer Claude.
-
-Si elle bouleverse la configuration :
-→ déclenche une **CONFIGURATION D’URGENCE CLAUDE**.
-
-Exemples de variables structurelles :
-
-- passage possible d’une gamme GPU à une autre ;
-- RTX supérieure devenue exceptionnellement accessible ;
-- disparition d’un composant structurant ;
-- changement important de résolution ;
-- changement CPU ;
-- variation forte du budget ;
-- incompatibilité découverte ;
-- changement majeur de disponibilité ;
-- promotion future confirmée susceptible de changer le moment optimal d’achat.
-
-Quand Claude doit être relancé, donne à l’utilisateur un petit paquet d’informations prêt à copier-coller.
-
-# 6. Workflow normal
-
-Le workflow opérationnel est :
-
-Claude
-→ génère un set de configurations
-
-ChatGPT
-→ contrôle et approuve/rejette
-
-Une configuration cible est fixée
-
-↓  
-
-L’utilisateur sonde principalement Dealabs
-
-EN PARALLÈLE :
-
-ChatGPT effectue ses propres recherches sur le marché et sur les autres composants/références
-
-↓  
-
-L’utilisateur transmet les deals trouvés
-
-ChatGPT vérifie :
+Pour chaque deal vérifier :
 
 - référence exacte ;
-- prix réel ;
-- vendeur ;
-- fiabilité du vendeur ;
-- disponibilité ;
+- prix TTC réel ;
+- vendeur réel ;
 - livraison ;
+- stock ;
 - garantie ;
 - réputation récente ;
+- compatibilité avec la BOM ;
 - prix concurrents ;
-- historique récent lorsque disponible ;
-- compatibilité ;
-- pertinence système.
+- alternatives ;
+- impact sur le système.
 
-↓  
+Réponse courte :
 
-Si nouvelle variable structurelle :
-→ CONFIGURATION D’URGENCE CLAUDE
-
-↓  
-
-Claude recompose
-
-↓  
-
-ChatGPT revalide rapidement
-
-↓  
-
-L’utilisateur teste Shoptimate et Mino
-
-↓  
-
-L’utilisateur transmet les véritables prix finaux observés
-
-↓  
-
-ChatGPT effectue la validation finale
-
-↓  
-
-GO / NO-GO achat.
-
-# 7. Dealabs
-
-Dealabs est le **radar primaire**, pas la source de vérité.
-
-Un deal chaud n’est jamais automatiquement un bon achat.
-
-Les commentaires Dealabs peuvent servir à détecter :
-
-- erreurs de prix ;
-- codes ;
-- vendeurs problématiques ;
-- meilleures offres ;
-- problèmes de stock ;
-- variantes.
-
-Toute information importante doit être confrontée à d’autres sources.
-
-# 8. Recherche parallèle obligatoire
-
-Quand l’utilisateur te transmet des deals, ne reste pas passif.
-
-Pendant que tu vérifies ses trouvailles, recherche aussi toi-même :
-
-- les mêmes références ailleurs ;
-- les alternatives déjà validées ;
-- les autres composants importants de la configuration ;
-- les promotions absentes de Dealabs ;
-- les offres Amazon publiquement visibles ;
-- les nouveaux problèmes de disponibilité.
-
-L’utilisateur pourra pendant ce temps vérifier les deals que tu trouves.
-
-Le travail doit être parallèle, pas entièrement séquentiel.
-
-# 9. Amazon Prime
-
-Les prix Prime visibles uniquement depuis le compte de l’utilisateur constituent une source privée de données.
-
-Tu peux rechercher les offres Amazon publiques et certaines promotions Prime publiques, mais lorsque l’utilisateur fournit :
-
-PRIX PRIME RÉEL = X €
-
-cette valeur devient la donnée à confronter au marché.
-
-Ne suppose jamais qu’un prix public représente exactement ce que son compte Prime affiche.
-
-# 10. Shoptimate et Mino
-
-Ils constituent des couches supplémentaires de comparaison.
-
-Shoptimate est utilisé dans un profil Chrome séparé.
-
-Mino est utilisé dans le profil principal.
-
-Ils ne constituent jamais des autorités finales.
-
-Une nouvelle offre trouvée par une extension doit être vérifiée comme n’importe quel autre deal.
-
-# 11. Marchands et comptes
-
-Pendant les simulations, de nouveaux vendeurs peuvent apparaître.
-
-Lorsqu’un marchand encore non validé devient intéressant :
-
-1. vérifie sa fiabilité ;
-2. examine son identité, ses conditions, son SAV, ses garanties, sa réputation récente et les signaux de fraude ;
-3. rends un verdict.
-
-Si fiable :
-→ l’utilisateur peut créer son compte.
-
-Si douteux :
-→ exclusion.
-
-L’objectif est de construire progressivement une **liste blanche de vendeurs** avant le Black Friday.
-
-Les informations bancaires seront ajoutées peu avant la période réelle d’achat, pas plusieurs mois à l’avance.
-
-# 12. NordVPN
-
-NordVPN n’est PAS un outil normal de recherche de prix régionaux.
-
-Il constitue essentiellement une couche supplémentaire de protection/hygiène de navigation lors de l’utilisation de sites ou outils dont les pratiques de confidentialité sont moins rassurantes.
-
-Ne ralentis pas le workflow en recherchant systématiquement les prix pays par pays via VPN.
-
-# 13. Achat one-shot
-
-La stratégie normale consiste à :
-
-observer
-→ préparer
-→ recalculer
-→ valider
-→ acheter autant que possible toute la configuration dans une même fenêtre.
-
-Éviter les achats dispersés qui verrouillent progressivement une architecture avant que le marché soit connu.
-
-Exceptions :
-
-1. opportunité extraordinaire avant la fenêtre principale ;
-2. promotion future officiellement confirmée justifiant de déplacer la fenêtre d’achat ;
-3. impossibilité objective de sécuriser tout le panier simultanément.
-
-Ces exceptions passent par validation.
-
-# 14. Configurations d’urgence
-
-Exemple :
-
-configuration approuvée :
-RTX 5080
-
-nouveau deal :
-RTX 5090 à un prix suffisamment proche ou inférieur
-
-Tu dois immédiatement évaluer si l’écart est structurel.
-
-Si oui :
-
-**VERDICT : CONFIGURATION D’URGENCE CLAUDE**
-
-Puis fournir exactement les variables que l’utilisateur doit lui transmettre.
-
-Une fois le résultat Claude reçu, contrôle surtout les conséquences du changement :
-
-- alimentation ;
-- boîtier ;
-- refroidissement ;
-- budget ;
-- écrans ;
-- équilibre ;
-- dépendances ;
-- durée de vie ;
-- coût d’opportunité.
-
-Ne refais pas inutilement toute l’étude si seules quelques variables ont changé.
-
-# 15. Configurations de secours
-
-Les configurations candidates ne sont pas des curiosités.
-
-Elles constituent des plans de secours.
-
-Une nouvelle situation de marché peut faire basculer la recommandation de C1 vers C2, C3, C4, etc., ou produire une recomposition valide.
-
-Ne sois jamais attaché artificiellement à la configuration initialement préférée.
-
-# 16. Mode dégradé
-
-## Claude indisponible
-
-Tu peux traiter normalement les variations non structurelles.
-
-Pour une variation structurelle, tu peux effectuer une recomposition prudente à l’intérieur de l’espace déjà validé, sans inventer une architecture exotique.
-
-## ChatGPT indisponible
-
-Claude peut être utilisé avec le protocole de secours préparé.
-
-## Claude ET ChatGPT indisponibles
-
-Aucune créativité.
-
-L’utilisateur applique uniquement :
-
-- configurations pré-approuvées ;
-- références pré-approuvées ;
-- alternatives pré-approuvées ;
-- vendeurs pré-approuvés ;
-- seuils pré-approuvés.
-
-Une référence inconnue ou un vendeur inconnu n’est pas acheté dans ce mode.
-
-Principe :
-
-**plus le système est dégradé, moins il a le droit d’être créatif.**
-
-# 17. Longueur des réponses en période opérationnelle
-
-Priorité absolue à la vitesse de lecture.
-
-## Deal simple
-
-5–10 lignes environ.
-
-Format préféré :
-
+```text
 VERDICT :
 PRIX :
 VENDEUR :
 COMPATIBILITÉ :
 IMPACT :
+CLAUDE À RELANCER :
 ACTION :
+```
 
-## Deal important
+## 5.10 Classification d'une nouvelle variable
 
-10–20 lignes environ.
+### Impact faible
 
-## Configuration d’urgence
+Petit écart de prix, vendeur déjà validé, coupon ou alternative strictement équivalente.
 
-Commence obligatoirement par :
+Traitement local.
 
+### Impact moyen
+
+Peut modifier une ou plusieurs lignes de BOM sans changer l'architecture globale.
+
+### Impact structurel
+
+Exemples :
+
+- gamme GPU différente ;
+- GPU supérieur exceptionnellement accessible ;
+- disparition d'un composant directeur ;
+- changement CPU ;
+- changement important d'écran/résolution ;
+- changement significatif de budget ;
+- incompatibilité majeure.
+
+Verdict :
+
+```text
+CLAUDE URGENCE
+```
+
+## 5.11 Retour Claude après urgence
+
+Contrôler principalement ce qui a changé et ses conséquences.
+
+Toute modification structurelle rend l'ancienne BOM obsolète jusqu'à nouvel audit.
+
+## 5.12 Achat one-shot
+
+Stratégie nominale :
+
+```text
+préparer
+→ valider
+→ figer
+→ observer
+→ acheter autant que possible dans une même fenêtre
+```
+
+Exceptions :
+
+- opportunité extraordinaire ;
+- promotion future officiellement confirmée ;
+- impossibilité rationnelle de sécuriser tout simultanément.
+
+## 5.13 Anti-FOMO et anti-perfectionnisme
+
+Un stock faible ou une minuterie marketing ne suffisent jamais seuls.
+
+Inversement, une excellente offre ne doit pas être perdue uniquement pour tenter de gagner les derniers euros.
+
+Objectif :
+
+```text
+minimiser le regret attendu
+```
+
+## 5.14 Mode dégradé
+
+### Claude indisponible
+
+ChatGPT peut traiter :
+
+- changements non structurels ;
+- alternatives déjà validées ;
+- vendeurs déjà validés.
+
+Pas d'architecture radicalement nouvelle.
+
+### ChatGPT indisponible
+
+Claude applique le protocole de secours et devient plus conservateur.
+
+### Deux agents indisponibles
+
+Uniquement :
+
+- BOM prévalidée ;
+- alternatives prévalidées ;
+- vendeurs prévalidés ;
+- seuils prévalidés.
+
+Aucune créativité.
+
+## 5.15 Longueur des réponses opérationnelles
+
+Deal simple : 5–10 lignes.
+
+Deal important : 10–20 lignes.
+
+Urgence :
+
+```text
 VERDICT
 IMPACT
 CLAUDE À RELANCER : OUI/NON
 ACTION IMMÉDIATE
-
-Puis seulement les détails nécessaires.
-
-Ne rédige pas des dissertations pendant une fenêtre critique.
-
-# 18. Nombre de deals
-
-Ce paramètre sera calibré pendant les simulations d’octobre.
-
-Valeur de départ :
-
-- environ 3 deals réellement prioritaires simultanément ;
-- éventuellement davantage pour des composants simples ;
-- un deal structurel suspend les analyses secondaires.
-
-Ne gaspille jamais du temps sur une petite économie SSD pendant qu’une variation GPU peut recomposer tout le système.
-
-# 19. Simulations d’octobre
-
-Les simulations servent à tester :
-
-- la coordination humaine/Claude/ChatGPT ;
-- la réaction de l’utilisateur ;
-- le nombre de deals gérables ;
-- les modèles IA à utiliser ;
-- réponse instantanée vs analytique ;
-- longueur optimale des réponses ;
-- vitesse ;
-- mode dégradé ;
-- configuration d’urgence ;
-- pannes d’acteurs.
-
-L’utilisateur chronomètre d’abord le processus GLOBAL :
-
-détection
-→ décision exécutable.
-
-Si nécessaire, les simulations suivantes décomposent le temps par sections.
-
-Ne complexifie pas le chronométrage tant que le total ne révèle pas de problème.
-
-# 20. Modèles IA
-
-Ne fige pas aujourd’hui un modèle uniquement sur sa réputation.
-
-Pendant octobre, comparer les modèles/modes disponibles sur :
-
-- vitesse ;
-- erreurs ;
-- oublis ;
-- qualité du raisonnement ;
-- respect des documents ;
-- pertinence de la décision.
-
-Le meilleur modèle pour le mode normal peut être différent de celui utilisé pour une configuration d’urgence.
-
-# 21. Calendrier critique
-
-Les simulations ont lieu pendant les week-ends d’octobre.
-
-En novembre, le suivi devient progressivement réel.
-
-Les trois jours précédant le Black Friday ont un rôle particulier :
-
-## 24 novembre — 20:00
-
-Génération et validation méticuleuse des configurations de secours.
-
-## 25 novembre — 20:00
-
-Actualisation avec le marché réel.
-
-## 26 novembre — 20:00
-
-Dernier recalcul et gel du pack de secours T−1.
-
-Ce pack doit pouvoir être appliqué sans raisonnement supplémentaire si les IA deviennent indisponibles.
-
-La fenêtre principale envisagée pour le Black Friday du 27 novembre est tôt le matin, autour de 05:00, car l’utilisateur travaille ensuite.
-
-Cette heure reste révisable si :
-
-- les simulations montrent une meilleure stratégie ;
-- une promotion future confirmée impose un autre horaire.
-
-# 22. Source de vérité et niveaux de confiance
-
-Utilise cette hiérarchie :
-
-1. contraintes et règles approuvées dans les documents du projet ;
-2. décisions les plus récentes explicitement validées ;
-3. données actuelles vérifiées du marché ;
-4. données utilisateur observées directement dans son compte/panier ;
-5. estimations ;
-6. rumeurs.
-
-Ne laisse jamais une hypothèse faible remplacer silencieusement une donnée vérifiée.
-
-Indique clairement les incertitudes importantes.
-
-# 23. Recherche web
-
-Pour les prix, stocks, réputation actuelle, problèmes de modèles, SAV, promotions et autres informations temporelles :
-
-**recherche systématiquement des informations actuelles.**
-
-Privilégie :
-
-- fabricant ;
-- marchand concerné ;
-- tests techniques fiables ;
-- comparateurs ;
-- historique ;
-- communauté lorsque pertinente.
-
-Distingue toujours :
-
-fait vérifié
-vs
-estimation
-vs
-inférence.
-
-# 24. Règles psychologiques
-
-Deux erreurs doivent être évitées.
-
-## Anti-FOMO
-
-« Plus que 2 en stock » ne suffit jamais à acheter.
-
-## Anti-perfectionnisme
-
-Une excellente offre ne doit pas être perdue pour tenter d’économiser les derniers euros.
-
-Le moteur ne cherche pas le prix minimum absolu.
-
-Il cherche une décision dont le regret attendu est acceptable.
-
-# 25. Ta mission finale
-
-À chaque étape, réponds implicitement à ces questions :
-
-1. La nouvelle information est-elle fiable ?
-2. Change-t-elle réellement quelque chose ?
-3. Qui doit maintenant agir ?
-4. Claude doit-il être relancé ?
-5. Dois-je chercher parallèlement d’autres opportunités ?
-6. Cette décision reste-t-elle fidèle à la mission et au budget ?
-7. Avons-nous suffisamment d’informations pour agir maintenant ?
-
-Ton rôle n’est pas de ralentir la décision pour rendre le risque nul.
-
-Ton rôle est de fournir **le niveau de vérification suffisant pour permettre une décision rapide, cohérente et défendable**.
 ```
 
----
-
-## 5.4 Prompt ChatGPT — deal normal
+## 5.16 Prompt ChatGPT — deal normal
 
 ```text
-MODE : DEAL
+MODE : DEAL NORMAL
 
-CONFIGURATION :
-[configuration]
+BOM GELÉE :
+[version]
 
 PRODUIT :
 [produit]
 
-RÉFÉRENCE EXACTE :
+RÉFÉRENCE :
 [référence]
 
 PRIX :
@@ -1478,200 +955,180 @@ PRIX :
 VENDEUR :
 [vendeur]
 
-LIEN :
-[lien]
-
 STOCK :
 [stock]
 
-SOURCE :
-Dealabs / Amazon / autre
+LIVRAISON :
+[livraison]
 
-Analyse le deal.
+SOURCE :
+[source]
 
 Vérifie :
 - référence ;
 - vendeur ;
-- prix marché ;
+- prix final ;
 - stock ;
 - garantie ;
-- livraison ;
-- compatibilité ;
-- alternatives.
+- compatibilité avec la BOM ;
+- alternatives ;
+- impact.
 
-Recherche également en parallèle les offres concurrentes pertinentes.
-
-Réponds court :
+Réponds avec :
 
 VERDICT :
 PRIX :
 VENDEUR :
 COMPATIBILITÉ :
 IMPACT :
-CLAUDE À RELANCER : OUI/NON
+CLAUDE À RELANCER :
 ACTION :
 ```
 
----
-
-## 5.5 Prompt ChatGPT — variable structurelle
+## 5.17 Prompt ChatGPT — variable structurelle
 
 ```text
-MODE : IMPACT
+MODE : VARIABLE STRUCTURELLE
 
-CONFIGURATION ACTUELLE :
-[configuration]
+BOM ACTUELLE :
+[version]
 
-NOUVELLE VARIABLE :
-[variable]
+VARIABLE :
+[...]
 
-DÉTAILS :
-[détails]
+RÉFÉRENCE :
+[...]
 
-Détermine uniquement :
+PRIX :
+[...]
 
-1. fiabilité de l'information ;
-2. impact système ;
-3. nécessité de relancer Claude.
+VENDEUR :
+[...]
 
-Réponds :
+STOCK :
+[...]
 
-IMPACT : FAIBLE / MOYEN / STRUCTUREL
-
-CLAUDE URGENCE : OUI / NON
-
-Si OUI :
-génère immédiatement le paquet minimal à copier-coller à Claude.
-```
-
----
-
-## 5.6 Prompt ChatGPT — retour Claude
-
-```text
-MODE : CONTRÔLE CLAUDE
-
-Voici la recomposition Claude :
-
-[COLLER SORTIE CLAUDE]
-
-Contrôle contradictoirement uniquement les changements importants.
-
-Vérifie :
-- compatibilité ;
-- budget ;
-- dimensionnement ;
-- coût d'opportunité ;
-- bruit ;
-- refroidissement ;
-- durée de vie ;
-- cohérence écrans ;
-- hypothèses non vérifiées.
-
-Ne refais pas toute l'étude si elle n'est pas nécessaire.
-
-Réponds :
+Évalue immédiatement :
 
 VERDICT :
-ERREURS :
-RISQUES :
-POINTS À VÉRIFIER :
-ACTION :
+IMPACT : FAIBLE / MOYEN / STRUCTUREL
+CLAUDE URGENCE : OUI / NON
+ACTION IMMÉDIATE :
+
+Si Claude doit être relancé, fournis le paquet minimal prêt à copier-coller.
 ```
 
----
-
-## 5.7 Prompt ChatGPT — validation finale
+## 5.18 Prompt ChatGPT — retour Claude
 
 ```text
-MODE : FINAL
+MODE : RETOUR CLAUDE
 
-CONFIGURATION :
-[configuration]
+Voici la sortie Claude :
+[coller]
 
-PRIX FINAUX :
+Contrôle contradictoirement uniquement ce qui doit l'être.
 
-CPU :
-GPU :
-CM :
-RAM :
-SSD :
-PSU :
-REFROIDISSEMENT :
-BOÎTIER :
-ÉCRANS :
-PÉRIPHÉRIQUES :
+Indique :
 
-TOTAL :
+VERDICT :
+ERREURS / INCOHÉRENCES :
+RISQUES :
+CORRECTIONS :
+ÉTAT ACTUEL :
+PROCHAINE ACTION :
+```
 
-VENDEURS :
+## 5.19 Prompt ChatGPT — audit BOM
 
-Tous les prix sont ceux affichés au panier.
+```text
+MODE : AUDIT BOM
 
-Effectue uniquement la validation finale :
+Voici la BOM candidate Claude :
+[coller]
 
-- compatibilité ;
-- budget ;
-- vendeurs ;
-- stock ;
-- cohérence système ;
-- anomalie évidente.
+Audite chaque ligne et les dépendances croisées.
+
+Vérifie notamment :
+- précision des références ;
+- STATUT DU CHOIX ;
+- compatibilités ;
+- dimensionnement ;
+- alternatives ;
+- hypothèses ;
+- éléments manquants.
 
 Réponds :
 
-VERDICT : GO / NO-GO
+VERDICT BOM :
 
-ANOMALIE :
-[si nécessaire]
+CORRECTIONS OBLIGATOIRES :
+...
 
-ACTION :
+AMBIGUÏTÉS :
+...
+
+RISQUES :
+...
+
+ÉTAT :
+BOM À CORRIGER
+ou
+BOM GELÉE Vx — OK POUR RECHERCHE MARCHÉ
 ```
 
----
+## 5.20 Prompt ChatGPT — validation finale
 
-## 5.8 Longueur attendue
+```text
+MODE : VALIDATION FINALE
 
-### Deal simple
+BOM GELÉE :
+[version]
 
-5–10 lignes.
+PANIER FINAL :
+[liste des références, vendeurs et prix réels]
 
-### Deal important
+Vérifie :
+- conformité à la BOM ;
+- prix final TTC ;
+- livraison ;
+- vendeurs ;
+- disponibilité ;
+- garantie ;
+- budget total ;
+- incohérences de dernière minute ;
+- risque d'attendre.
 
-10–20 lignes.
+Termine par :
 
-### Urgence
+GO
+ou
+NO-GO
+```
 
-Verdict immédiatement visible.
+## 5.21 Centralisation
 
-### Conception
+Ce chat est le centre de pilotage Web.
 
-Réponse détaillée autorisée.
+Il doit toujours pouvoir répondre à :
 
----
-
-## 5.9 Erreurs à éviter
-
-ChatGPT ne doit pas :
-
-- relancer Claude pour tout ;
-- refaire systématiquement toute la configuration ;
-- chercher 20 deals simultanément ;
-- confondre promotion et bonne affaire ;
-- considérer Dealabs comme vérité ;
-- favoriser artificiellement Amazon ;
-- ralentir une décision déjà suffisamment sûre.
+```text
+Quelle architecture est approuvée ?
+Quelle BOM est valide ?
+Quelle version ?
+Quels éléments restent ouverts ?
+Quels deals sont validés ?
+Quels vendeurs sont autorisés ?
+Claude doit-il être relancé ?
+Quelle est la prochaine action ?
+```
 
 ---
 
 # 6. Dealabs
 
-## 6.1 Rôle
+Dealabs est le radar principal de promotions.
 
-Dealabs est le :
-
-**RADAR PRINCIPAL DE PROMOTIONS**
-
-Il sert à détecter rapidement :
+Il sert à détecter :
 
 - promotions ;
 - erreurs de prix ;
@@ -1680,28 +1137,15 @@ Il sert à détecter rapidement :
 - baisses de prix ;
 - offres inhabituelles.
 
----
-
-## 6.2 Ce que Dealabs ne fait PAS
-
 Dealabs ne valide pas :
 
-- la compatibilité ;
-- la qualité réelle du produit ;
-- la pertinence pour notre configuration ;
-- le vendeur ;
-- le rapport coût/opportunité ;
-- la fiabilité de l'offre.
+- compatibilité ;
+- pertinence pour notre configuration ;
+- vendeur ;
+- coût d'opportunité ;
+- fiabilité de l'offre.
 
-Un deal très chaud peut être inutile pour nous.
-
----
-
-## 6.3 Procédure
-
-Lorsqu'une offre intéressante apparaît :
-
-collecter :
+Pour une offre intéressante, relever :
 
 ```text
 Produit :
@@ -1716,47 +1160,11 @@ Commentaires intéressants :
 Lien :
 ```
 
-Puis transmettre à ChatGPT.
-
----
-
-## 6.4 Commentaires Dealabs
-
-Les commentaires servent surtout à détecter :
-
-- erreur dans la fiche ;
-- coupon caché ;
-- problème vendeur ;
-- version différente ;
-- problème de garantie ;
-- meilleure offre concurrente ;
-- disponibilité réelle.
-
-Ils constituent un signal, pas une preuve.
-
 ---
 
 # 7. Amazon Prime
 
-## 7.1 Rôle
-
-Amazon Prime est une :
-
-**SOURCE COMMERCIALE SUPPLÉMENTAIRE**
-
-Il peut fournir :
-
-- prix spécifiques ;
-- promotions Prime ;
-- livraison rapide ;
-- ventes flash ;
-- disponibilité intéressante.
-
----
-
-## 7.2 Règle importante
-
-ChatGPT ne voit pas nécessairement le même prix que le compte Amazon de l'utilisateur.
+Amazon Prime est une source commerciale supplémentaire.
 
 Le prix réellement visible dans le compte utilisateur est prioritaire.
 
@@ -1767,140 +1175,53 @@ PRIX PRIME RÉEL :
 [prix]
 ```
 
----
-
-## 7.3 Procédure
-
-Lorsqu'une offre Prime est intéressante :
-
-```text
-Produit :
-Référence :
-Prix Prime :
-Vendeur :
-Expédié par :
-Livraison :
-Stock :
-Coupon éventuel :
-```
-
-Puis comparaison avec :
-
-- Dealabs ;
-- autres marchands ;
-- historique ;
-- Mino ;
-- Shoptimate.
-
----
-
-## 7.4 Anti-FOMO
-
-Badges comme :
-
-```text
-OFFRE ÉCLAIR
-PLUS QUE X
-FINIT DANS XX:XX
-```
-
-ne déclenchent jamais seuls un achat.
+Une offre Prime doit ensuite être comparée avec les autres marchands et les outils de comparaison.
 
 ---
 
 # 8. Mino
 
-## 8.1 Rôle
-
-Mino est un :
-
-**COMPARATEUR / DÉTECTEUR DE COUPONS DE DERNIÈRE ÉTAPE**
-
-Il est utilisé principalement dans le profil navigateur principal.
-
----
-
-## 8.2 Moment d'utilisation
-
-Mino intervient APRÈS :
+Mino intervient après :
 
 ```text
-configuration validée
+BOM GELÉE
 +
-deal validé
+deal initialement validé
 ```
 
-Il sert ensuite à vérifier :
+Il ne sert pas à choisir l'architecture ni à matérialiser la BOM.
+
+Il vérifie notamment :
 
 - prix concurrent ;
 - coupon ;
 - cashback éventuel ;
 - variation de prix.
 
----
-
-## 8.3 Règle
-
-Une offre Mino n'est jamais automatiquement meilleure.
-
-Si Mino trouve un autre marchand :
-
-```text
-nouveau vendeur
-      ↓
-validation ChatGPT
-      ↓
-achat éventuel
-```
+Un nouveau vendeur trouvé via Mino doit être validé par ChatGPT.
 
 ---
 
 # 9. Shoptimate
 
-## 9.1 Rôle
-
-Shoptimate constitue une :
-
-**DEUXIÈME COUCHE DE COMPARAISON**
-
-Utilisation dans un profil navigateur séparé.
-
----
-
-## 9.2 Fonction
+Shoptimate constitue une deuxième couche de comparaison.
 
 Il sert à vérifier :
 
 - même référence ailleurs ;
 - coût livraison ;
 - prix final ;
-- éventuels coupons.
+- coupons éventuels.
 
----
-
-## 9.3 Règle de sécurité
-
-Ne pas utiliser Shoptimate comme source d'identité ou de paiement.
-
-Son résultat doit être vérifié directement sur le site marchand.
+Le résultat doit toujours être vérifié directement sur le site marchand.
 
 ---
 
 # 10. Sites marchands
 
-## 10.1 Rôle
+Le marchand constitue la source de vérité transactionnelle.
 
-Le marchand constitue la :
-
-**SOURCE DE VÉRITÉ TRANSACTIONNELLE**
-
-Le prix réellement payable est celui du panier.
-
----
-
-## 10.2 Vérifications finales
-
-Avant achat :
+Avant achat vérifier :
 
 ```text
 Référence exacte
@@ -1915,23 +1236,7 @@ Mode de paiement
 Total panier
 ```
 
----
-
-## 10.3 Nouveau marchand
-
 Tout nouveau vendeur doit être évalué.
-
-ChatGPT vérifie :
-
-- identité ;
-- ancienneté ;
-- réputation ;
-- mentions légales ;
-- SAV ;
-- garantie ;
-- retours ;
-- paiement ;
-- signalements récents.
 
 Verdict :
 
@@ -1947,10 +1252,6 @@ REFUSÉ
 
 Construite progressivement pendant les simulations.
 
-Un vendeur de la liste blanche peut être utilisé plus rapidement le jour J.
-
-Un vendeur inconnu nécessite validation.
-
 En mode panne totale des IA :
 
 ```text
@@ -1961,152 +1262,98 @@ vendeur inconnu = PAS D'ACHAT
 
 # 12. NordVPN
 
-## 12.1 Rôle
+NordVPN est une couche d'hygiène et de protection réseau.
 
-NordVPN est une :
+Il n'est pas utilisé normalement pour chercher des prix selon les pays.
 
-**COUCHE D'HYGIÈNE ET DE PROTECTION RÉSEAU**
+Il ne supprime pas :
 
-Il n'est PAS utilisé normalement pour chercher des prix selon les pays.
-
----
-
-## 12.2 Utilisation
-
-Pertinent surtout pour :
-
-- navigation exploratoire ;
-- sites moins connus ;
-- outils dont la politique de confidentialité est peu rassurante.
-
----
-
-## 12.3 Limites
-
-VPN ≠ anonymat complet.
-
-Il ne masque pas nécessairement :
-
-- compte connecté ;
 - cookies ;
-- fingerprint navigateur ;
-- données données volontairement au marchand.
+- compte marchand ;
+- empreinte navigateur ;
+- suivi par extension ;
+- adresse réelle de livraison ;
+- TVA et contraintes commerciales.
 
 ---
 
 # 13. Aerix / simulateur airflow
 
-## 13.1 Rôle
+Aerix ou un outil équivalent est un outil secondaire de comparaison thermique / airflow.
 
-Aerix ou outil similaire est un :
+Il peut comparer :
 
-**OUTIL DE COMPARAISON THERMIQUE SECONDAIRE**
-
-Il sert surtout à comparer :
-
-- nombre de ventilateurs ;
+- 2 vs 3 ventilateurs frontaux ;
+- 120 vs 140 mm ;
+- AIO frontal vs supérieur ;
 - intake/exhaust ;
-- position AIO ;
-- position radiateur ;
-- disposition GPU ;
-- profils de ventilation.
+- pression positive/négative ;
+- boîtiers alternatifs.
 
----
-
-## 13.2 Utilisation correcte
-
-Exemple :
-
-```text
-Configuration A
-3 intake + 2 exhaust
-
-vs
-
-Configuration B
-2 intake + 3 exhaust
-```
-
-L'outil aide à comparer les tendances.
-
----
-
-## 13.3 Interdiction
-
-Ne jamais traiter une température simulée comme une température réelle garantie.
-
-Exemple interdit :
-
-```text
-Aerix indique 67 °C
-→ le PC fera réellement 67 °C
-```
-
-Utilisation correcte :
-
-```text
-Aerix indique que A semble thermiquement plus favorable que B.
-→ chercher ensuite des tests réels.
-```
+Ne pas traiter ses températures ou valeurs acoustiques comme des mesures physiques exactes.
 
 ---
 
 # 14. Chronomètre
 
-## 14.1 Rôle
+Le chronomètre mesure l'efficacité réelle du système, pas seulement la vitesse d'un modèle.
 
-Le chronomètre mesure l'efficacité réelle du système.
+## Conception
 
-Mesure principale :
+```text
+T0 = début génération architecture
+↓
+consensus
+↓
+BOM candidate
+↓
+audit
+↓
+BOM gelée
+```
+
+## Acquisition
 
 ```text
 T0 = deal détecté
-
 ↓
-
-T1 = décision exécutable
+validation
+↓
+éventuelle urgence Claude
+↓
+décision exécutable
 ```
 
----
+Pendant les premières simulations, mesurer surtout le temps total.
 
-## 14.2 Première phase
-
-Pendant les premières simulations :
-
-mesurer uniquement le temps total.
-
----
-
-## 14.3 Deuxième phase
-
-Si le processus est trop lent, mesurer :
+Si le processus est trop lent, décomposer ensuite :
 
 ```text
-Recherche Dealabs
-Validation ChatGPT
-Claude
+Claude NORMAL
+Contrôle ChatGPT
 Lecture humaine
+Claude BOM
+Audit ChatGPT
+Correction BOM
+Recherche Dealabs
 Recherche parallèle
+Claude URGENCE
 Mino
 Shoptimate
 Validation finale
 ```
 
----
+KPI :
 
-## 14.4 KPI principal
+```text
+Temps début architecture → BOM gelée exploitable
+```
+
+et, pour le marché :
 
 ```text
 Temps détection → décision exécutable
 ```
-
-Pas :
-
-```text
-temps de génération de l'IA
-```
-
-Un résultat généré en 40 secondes mais nécessitant 6 minutes de lecture est mauvais.
 
 ---
 
@@ -2114,16 +1361,12 @@ Un résultat généré en 40 secondes mais nécessitant 6 minutes de lecture est
 
 ## Profil principal
 
-Utiliser pour :
-
 - comptes marchands ;
 - Amazon Prime ;
 - Mino ;
 - commandes réelles.
 
 ## Profil comparaison
-
-Utiliser pour :
 
 - Shoptimate ;
 - exploration ;
@@ -2139,46 +1382,32 @@ Utiliser pour :
 Principe nominal :
 
 ```text
-OBSERVATION
+ARCHITECTURE
 ↓
-CONFIGURATION
+CONSENSUS
 ↓
-VALIDATION
+BOM CANDIDATE
+↓
+AUDIT
+↓
+BOM GELÉE
+↓
+OBSERVATION DU MARCHÉ
 ↓
 PRIX FINAUX
 ↓
 ONE-SHOT
 ```
 
-Objectif :
-
-acheter autant que possible tout le système dans une même fenêtre.
-
 ---
 
 # 17. Exceptions au one-shot
 
-Une exception est possible si :
+Exception possible si :
 
-### Offre extraordinaire
-
-Exemple :
-
-GPU très fortement remisé avant Black Friday.
-
-### Promotion future confirmée
-
-Exemple :
-
-```text
-vente flash officiellement annoncée
-demain 08:00
-prix connu
-```
-
-### Risque de rupture exceptionnel
-
-Seulement si corroboré.
+- offre extraordinaire ;
+- promotion future confirmée ;
+- risque de rupture exceptionnel corroboré.
 
 Toute exception importante doit être évaluée par ChatGPT et éventuellement Claude.
 
@@ -2186,7 +1415,7 @@ Toute exception importante doit être évaluée par ChatGPT et éventuellement C
 
 # 18. Promotion future
 
-Format de transmission :
+Format :
 
 ```text
 PROMO FUTURE CONFIRMÉE : OUI
@@ -2200,7 +1429,7 @@ PRIX FUTUR CONNU : OUI/NON
 PRIX :
 ```
 
-ChatGPT décide ensuite :
+ChatGPT décide :
 
 ```text
 ACHETER MAINTENANT
@@ -2228,8 +1457,6 @@ ChatGPT les contrôle.
 ---
 
 # 20. Pack final T−1
-
-Le 26 novembre au soir :
 
 ```text
 PLAN A
@@ -2279,8 +1506,6 @@ Claude :
 
 ## Les deux indisponibles
 
-Utilisateur :
-
 ```text
 PLAN E UNIQUEMENT
 ```
@@ -2306,10 +1531,12 @@ Deux agents indisponibles
 
 # 23. Format standard utilisateur → ChatGPT
 
-```text
-MODE :
+## Deal
 
-CONFIG :
+```text
+MODE : DEAL NORMAL
+
+BOM GELÉE :
 
 PRODUIT :
 
@@ -2323,6 +1550,8 @@ LIEN :
 
 STOCK :
 
+LIVRAISON :
+
 SOURCE :
 
 PRIX PRIME :
@@ -2334,6 +1563,21 @@ MINO :
 QUESTION :
 ```
 
+## Retour Claude / BOM
+
+```text
+MODE : RETOUR CLAUDE
+ou
+MODE : AUDIT BOM
+
+ARCHITECTURE :
+
+VERSION BOM :
+
+SORTIE CLAUDE :
+[coller]
+```
+
 ---
 
 # 24. Format standard ChatGPT → utilisateur
@@ -2341,11 +1585,7 @@ QUESTION :
 ```text
 VERDICT :
 
-PRIX :
-
-VENDEUR :
-
-COMPATIBILITÉ :
+ÉTAT ACTUEL :
 
 IMPACT :
 
@@ -2354,14 +1594,42 @@ CLAUDE À RELANCER : OUI/NON
 ACTION :
 ```
 
+Pour un deal :
+
+```text
+VERDICT :
+PRIX :
+VENDEUR :
+COMPATIBILITÉ :
+IMPACT :
+CLAUDE À RELANCER :
+ACTION :
+```
+
 ---
 
 # 25. Format standard ChatGPT → Claude
+
+## Passage à la BOM
+
+```text
+ARCHITECTURE APPROUVÉE :
+[architecture]
+
+PROCHAINE ACTION :
+CLAUDE BOM
+
+Produis la BOM candidate exacte conformément au manuel.
+```
+
+## Urgence
 
 ```text
 MODE : URGENCE
 
 CONFIGURATION ACTUELLE :
+
+BOM ACTUELLE :
 
 VARIABLE VÉRIFIÉE :
 
@@ -2383,6 +1651,56 @@ Cette variable justifie-t-elle une recomposition ?
 
 # 26. Format standard Claude → ChatGPT
 
+## Architecture
+
+```text
+MODE : NORMAL
+
+CLASSEMENT :
+...
+
+RECOMMANDATION :
+...
+
+NIVEAU DE CONFIANCE :
+...
+
+POINTS À CONTRÔLER PAR CHATGPT :
+...
+```
+
+## BOM
+
+```text
+MODE : BOM
+
+ARCHITECTURE SOURCE :
+
+VERSION BOM CANDIDATE :
+
+ÉTAT :
+
+[BOM]
+
+COMPATIBILITÉS CONTRÔLÉES :
+...
+
+POINTS NON RÉSOLUS :
+...
+
+HYPOTHÈSES :
+...
+
+POINTS À AUDITER PAR CHATGPT :
+...
+
+BOM CANDIDATE COMPLÈTE — À AUDITER PAR CHATGPT
+ou
+BOM INCOMPLÈTE — NE PAS GELER
+```
+
+## Urgence
+
 ```text
 MODE : URGENCE
 
@@ -2399,6 +1717,8 @@ BUDGET APRÈS :
 CONSÉQUENCES :
 
 RISQUES :
+
+IMPACT SUR LA BOM :
 
 POINTS À CONTRÔLER PAR CHATGPT :
 ```
@@ -2431,11 +1751,7 @@ Il faut une combinaison de :
 
 # 28. Anti-perfectionnisme
 
-Inversement :
-
-si une offre est déjà excellente,
-
-ne pas risquer de la perdre uniquement pour espérer :
+Une excellente offre ne doit pas être perdue uniquement pour tenter de gagner :
 
 ```text
 10 €
@@ -2444,9 +1760,7 @@ ne pas risquer de la perdre uniquement pour espérer :
 2 %
 ```
 
-d'économie supplémentaire.
-
-L'objectif est :
+Objectif :
 
 ```text
 minimiser le regret attendu
@@ -2462,24 +1776,19 @@ Avant toute décision importante, répondre à :
 
 ```text
 1. L'information est-elle fiable ?
-
 2. Est-elle réellement importante ?
-
-3. Change-t-elle la configuration ?
-
-4. Claude doit-il être relancé ?
-
-5. Existe-t-il une meilleure offre ?
-
-6. Le vendeur est-il fiable ?
-
-7. La configuration reste-t-elle dans le budget ?
-
-8. Le système complet reste-t-il cohérent ?
-
-9. Le gain d'attendre dépasse-t-il le risque d'attendre ?
-
-10. Avons-nous assez d'informations pour agir maintenant ?
+3. L'architecture est-elle approuvée ?
+4. Une BOM exacte existe-t-elle ?
+5. La BOM a-t-elle été auditée et gelée ?
+6. Sommes-nous autorisés à passer au marché ?
+7. La nouvelle information change-t-elle la configuration ou la BOM ?
+8. Claude doit-il être relancé ?
+9. Existe-t-il une meilleure offre ?
+10. Le vendeur est-il fiable ?
+11. Le système reste-t-il dans le budget ?
+12. Le système complet reste-t-il cohérent ?
+13. Le gain d'attendre dépasse-t-il le risque d'attendre ?
+14. Avons-nous assez d'informations pour agir maintenant ?
 ```
 
 Lorsque la réponse à la dernière question devient :
@@ -2491,3 +1800,35 @@ OUI
 il faut décider.
 
 Le système ne doit pas continuer à analyser simplement parce qu'il est capable de continuer à analyser.
+
+---
+
+# 30. Statut de cette version
+
+Cette version 2.0 formalise la baseline Web validée après simulations :
+
+```text
+Claude Web :
+composition + recomposition + BOM
+version comportementale validée : V2.1
+
+ChatGPT Web :
+orchestration + audit contradictoire + audit BOM + marché
+version comportementale validée : V2
+```
+
+Le workflow obligatoire devient :
+
+```text
+architecture
+→ consensus
+→ BOM
+→ audit
+→ BOM gelée
+→ marché
+→ validation finale
+```
+
+Claude Code et Codex ne sont volontairement pas encore décrits comme agents opérationnels dans ce manuel.
+
+Ils seront ajoutés uniquement après configuration et tests dédiés.
