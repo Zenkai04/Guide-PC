@@ -1,7 +1,7 @@
 # Manuel d'utilisation des outils — Projet PC Black Friday 2026
 
-Version : 2.1
-Statut : baseline Web validée + stratégie de décision pragmatique (§31) issue du benchmark CLI #1
+Version : 2.2
+Statut : baseline Web validée + stratégie pragmatique (§31) + procédure du jour J (§32) + correction exceptionnelle (§33)
 Mise à jour : 31 octobre 2026
 
 ---
@@ -53,7 +53,10 @@ Principe central de la version 2 :
 > Une architecture techniquement correcte n'est pas encore une liste d'achat.
 > La recherche commerciale ne commence qu'après production, audit et gel d'une BOM exploitable.
 
-Exception encadrée : relevés de prix indicatifs pour vérifier la faisabilité économique avant le gel (voir §31.3).
+Exceptions encadrées :
+
+- relevés de prix indicatifs pour vérifier la faisabilité économique avant le gel (voir §31.3) ;
+- session d'acquisition explicitement ouverte par le pilotage : la BOM est composée ou adaptée à partir des prix et disponibilités réels (voir §32). Dans ce cadre, §32 prévaut sur l'ordre « BOM gelée → recherche marché » des sections antérieures.
 
 ---
 
@@ -276,7 +279,10 @@ Ne pas consulter volontairement :
 
 Un prix découvert accidentellement ne doit pas influencer la BOM.
 
-Exception : ChatGPT fournit explicitement une `VARIABLE VÉRIFIÉE`.
+Exceptions :
+
+- ChatGPT ou le pilotage fournit explicitement une `VARIABLE VÉRIFIÉE` ;
+- une session d'acquisition est explicitement ouverte (§32) : Claude peut alors consulter directement les offres réelles des références utiles, ou travailler sur les données vérifiées transmises par le pilotage. Cette autorisation ne vaut jamais autorisation d'achat.
 
 ### Références incertaines
 
@@ -349,6 +355,8 @@ Vérifier explicitement :
 - câbles indispensables ;
 - adaptateurs indispensables ;
 - autres accessoires réellement nécessaires.
+
+Licence du système d'exploitation et montage : traités selon `31-Etat-operationnel.md`. Lorsqu'ils y sont déclarés couverts (licence existante, montage par l'utilisateur), ils sont indiqués à 0 € sans ligne d'achat ; seuls les accessoires indispensables réellement manquants sont ajoutés.
 
 Chaque ligne comporte au minimum :
 
@@ -515,7 +523,7 @@ Pour chaque ligne :
 
 N'invente ni référence, ni prix, ni préférence utilisateur.
 
-Ne consulte pas le marché commercial.
+Hors session d'acquisition explicitement ouverte (§32), ne consulte pas le marché commercial.
 
 Si une partie de l'architecture est ambiguë :
 marque-la À DÉTERMINER et garde la BOM incomplète.
@@ -588,7 +596,7 @@ Claude ne doit pas :
 - dépasser le budget silencieusement ;
 - reconstruire toute l'étude pour une petite variation ;
 - devenir lui-même l'orchestrateur marché ;
-- utiliser un comparateur commercial en MODE BOM ;
+- utiliser un comparateur commercial en MODE BOM hors session d'acquisition ouverte (§32) ;
 - déclarer sa propre BOM gelée.
 
 ---
@@ -647,6 +655,8 @@ GO / NO-GO
 ```
 
 Aucune phase ne doit être sautée.
+
+Pendant une session d'acquisition ouverte, la procédure du §32 remplace ce séquencement : les offres réelles sont relevées avant la BOM candidate, puis audit, gel et validation au panier.
 
 ## 5.3 États opérationnels
 
@@ -783,6 +793,8 @@ recherche systématique des prix = NON
 Les vérifications techniques constructeur restent autorisées.
 
 Les relevés de prix indicatifs définis au §31.3 restent autorisés ; ils ne constituent ni une recherche de deals ni une décision d'achat.
+
+Ce gate s'applique à la préparation. Une session d'acquisition explicitement ouverte par le pilotage (§32) l'ouvre pour les références utiles : prix et disponibilités réels peuvent alors être recherchés avant le gel, afin de composer une BOM achetable.
 
 ## 5.8 Recherche marché
 
@@ -1404,6 +1416,8 @@ PRIX FINAUX
 ONE-SHOT
 ```
 
+Le jour J, ce principe est appliqué selon la procédure du §32.
+
 ---
 
 # 17. Exceptions au one-shot
@@ -1834,9 +1848,15 @@ architecture
 → validation finale
 ```
 
-Claude Code et Codex ne sont pas encore décrits en détail comme agents opérationnels dans ce manuel.
+Version 2.2 : les simulations Claude Code ↔ Codex ont validé le workflow CLI pragmatique (composition complète → audit principal → validation ou correction ciblée).
 
-Leur bootstrap et le contrôle contradictoire CLI ont été validés par le benchmark CLI #1 (voir `31-Etat-operationnel.md`) ; leurs rôles et règles de démarrage sont définis par `31-Etat-operationnel.md`, `CLAUDE.md` et `AGENTS.md`.
+Dans le workflow CLI :
+
+- Claude Code assure les rôles de composition, BOM et correction décrits pour Claude Web ;
+- Codex assure le contrôle contradictoire et l'audit BOM décrits pour ChatGPT (§5.4 à §5.6), et autorise le gel ;
+- le pilotage (utilisateur, éventuellement ChatGPT) ouvre les sessions, transmet les variables vérifiées, valide le panier et rend le GO / NO-GO.
+
+Les règles de démarrage propres à chaque agent restent définies par `31-Etat-operationnel.md`, `CLAUDE.md` et `AGENTS.md`.
 
 ---
 
@@ -1874,9 +1894,9 @@ Restent interdits avant le gel :
 - la recherche systématique de promotions et de deals ;
 - toute décision d'achat.
 
-Les relevés sont effectués ou transmis par le pilotage (ChatGPT ou utilisateur). Ils sont marqués `PRIX INDICATIF`, datés et sourcés. Ils ne valent ni prix au panier, ni stock, ni `VARIABLE VÉRIFIÉE`, ni engagement.
+Les relevés sont effectués ou transmis par le pilotage (ChatGPT ou utilisateur), ou effectués par Claude lorsque la tâche l'y autorise explicitement. Ils sont marqués `PRIX INDICATIF`, datés et sourcés. Ils ne valent ni prix au panier, ni stock, ni `VARIABLE VÉRIFIÉE`, ni engagement.
 
-Les règles propres aux agents restent inchangées : en MODE BOM, Claude ne consulte pas volontairement le marché ; Codex ne lance pas de recherche de deals.
+Hors session d'acquisition ouverte, les règles propres aux agents restent inchangées : en MODE BOM, Claude ne consulte pas volontairement le marché ; Codex ne lance pas de recherche de deals. Pendant une session d'acquisition ouverte, §32 s'applique.
 
 ## 31.4 Incertitude résiduelle
 
@@ -1897,3 +1917,92 @@ Si non : la noter, ne pas itérer.
 ## 31.6 Temps humain
 
 Mesurer aussi le **temps humain consacré à l'orchestration** (lecture, copier-coller, réponses aux agents), en plus du temps des agents (voir §14).
+
+Les règles de correction et de ré-audit sont précisées au §33.
+
+---
+
+# 32. Procédure du jour J — session d'acquisition
+
+Fenêtre principale d'acquisition : **Black Friday, 27 novembre 2026**.
+
+## 32.1 Trois situations distinctes
+
+```text
+PRÉPARATION
+  prix indicatifs exploratoires (§31.3) autorisés
+  recherche systématique de deals interdite
+  aucune architecture figée sur les seuls prix observés
+
+SESSION D'ACQUISITION OUVERTE
+  ouverte explicitement par le pilotage
+  prix et disponibilités réels des références utiles autorisés
+  composition / adaptation de la BOM sur ces offres réelles
+
+DÉCISION D'ACHAT
+  prix finaux au panier validés par le pilotage
+  GO / NO-GO
+  commande uniquement sur autorisation explicite de l'utilisateur
+```
+
+L'ouverture d'une session d'acquisition n'est jamais une autorisation d'achat.
+
+## 32.2 Déroulé
+
+1. **Ouverture** — le pilotage écrit explicitement `SESSION D'ACQUISITION OUVERTE` (date, périmètre).
+2. **Relevé des offres** — prix TTC, disponibilité et vendeur des références utiles (configurations de base, alternatives, secours), relevés par Claude directement ou transmis par le pilotage comme données vérifiées. Chaque prix est daté, sourcé et marqué `PRIX OBSERVÉ` ; une donnée non confirmée reste `ESTIMATION`.
+3. **Sélection** — Claude Code part des configurations de base de `31-Etat-operationnel.md` et privilégie les corrections locales. Une recomposition n'est justifiée que par une variable structurelle (§5.10) ou un échec d'exigence.
+4. **BOM candidate complète** — références exactes, compatibilités contrôlées (§4.7), alternatives, prix observés, total et réserve sous le plafond.
+5. **Audit Codex principal** (§5.6 et §33).
+6. **Gel** — en l'absence d'erreur bloquante, Codex peut autoriser le gel : `BOM GELÉE Vx`.
+7. **Validation panier** — le pilotage vérifie prix finaux, vendeurs, livraison, garantie et total (§10), puis rend `GO` ou `NO-GO`.
+8. **Commande** — uniquement après autorisation explicite de l'utilisateur.
+
+## 32.3 Règles de décision
+
+- Les configurations étudiées avant la session sont des **bases techniques et alternatives**, pas des décisions d'achat.
+- Le plafond du setup complet reste applicable ; aucune remise n'est présumée.
+- Distinguer **objectif initial** (ex. : affichage prioritaire) et **compromis nécessaires** pour tenir le plafond ; tout compromis est nommé explicitement.
+- `NO-GO` est un résultat rationnel si les offres réelles sont insuffisantes.
+- Anti-FOMO (§27) et anti-perfectionnisme (§28) restent applicables.
+- Prix observé ≠ prix au panier : seul le panier fait foi pour le GO.
+
+---
+
+# 33. Correction exceptionnelle, contrôle obligatoire
+
+Fonctionnement nominal :
+
+```text
+CLAUDE — COMPOSITION / BOM COMPLÈTE
+→ CODEX — AUDIT PRINCIPAL
+→ VALIDATION ou CORRECTION CIBLÉE
+```
+
+## 33.1 Ce qui est bloquant
+
+Une remarque n'est bloquante que si elle affecte réellement :
+
+- la compatibilité ;
+- la sécurité ou la fiabilité ;
+- une exigence essentielle ;
+- la faisabilité budgétaire ;
+- l'exhaustivité de la configuration (ligne essentielle manquante ou non achetable) ;
+- la validité de la décision d'achat.
+
+Les imperfections de rédaction, alternatives marginales et incertitudes secondaires documentées sont consignées comme **réserves** et ne déclenchent pas de nouvelle boucle.
+
+## 33.2 Correction ciblée
+
+- Claude ne corrige que les lignes bloquantes signalées (MODE CORRECTION BOM).
+- Codex revérifie **uniquement les éléments modifiés et leurs dépendances**, sauf impact structurel.
+- Un impact structurel (§5.10) rend la BOM obsolète et impose un nouvel audit complet.
+
+## 33.3 Contrôle obligatoire
+
+La réduction des itérations ne réduit pas la rigueur :
+
+- une compatibilité non vérifiée n'est jamais considérée comme acquise ;
+- une référence critique ambiguë interdit le gel ;
+- une donnée inconnue reste inconnue ;
+- la compatibilité technique ne vaut pas validation économique.

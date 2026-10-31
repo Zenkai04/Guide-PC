@@ -169,6 +169,8 @@ Les vérifications techniques constructeur restent autorisées.
 Exception :
 une `VARIABLE VÉRIFIÉE` commerciale est explicitement transmise dans la tâche.
 
+Ces restrictions avant gel s'appliquent à la préparation. Pendant une session d'acquisition explicitement ouverte par le pilotage, le §32 de `30-Manuel-operationnel-outils.md` autorise les relevés de prix et de disponibilité utiles avant le gel ; la BOM auditée peut donc reposer sur des offres réelles. Cette autorisation ne vaut jamais autorisation d'achat : après gel, le pilotage valide le panier et rend le GO / NO-GO.
+
 ## Impact d'une nouvelle variable
 
 Classe l'impact :

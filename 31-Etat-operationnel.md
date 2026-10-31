@@ -1,7 +1,7 @@
 # État opérationnel — Projet PC Black Friday 2026
 
 Dernière mise à jour : 31 octobre 2026  
-Statut : benchmark CLI #1 clôturé ; stratégie de décision pragmatique adoptée
+Statut : simulations Claude Code ↔ Codex clôturées ; préparation opérationnelle avant acquisition Black Friday
 
 ---
 
@@ -9,7 +9,8 @@ Statut : benchmark CLI #1 clôturé ; stratégie de décision pragmatique adopt�
 
 ```text
 PHASE :
-COMPOSITION RÉELLE — STRATÉGIE PRAGMATIQUE
+PRÉPARATION OPÉRATIONNELLE
+→ ACQUISITION BLACK FRIDAY (27 novembre 2026)
 
 ÉTAT :
 ChatGPT Web V2      VALIDÉ
@@ -25,7 +26,13 @@ Benchmark CLI #1 (31 octobre 2026) :
 - constat : contrôle de qualité, mais coût excessif en itérations et en interventions humaines ;
 - aucune architecture réelle ni BOM approuvée.
 
-Les règles de décision pragmatique sont définies au §31 du manuel `30-Manuel-operationnel-outils.md`.
+Simulations pragmatiques Claude Code ↔ Codex (31 octobre 2026) :
+
+- résultats plus concrets et satisfaisants, nette réduction des itérations inutiles ;
+- deux configurations comparables produites, puis une BOM candidate complète auditée (voir §3) ;
+- aucune BOM finale gelée, aucun achat autorisé.
+
+Règles applicables : manuel `30-Manuel-operationnel-outils.md` §31 (stratégie pragmatique), §32 (procédure du jour J), §33 (correction exceptionnelle, contrôle obligatoire).
 
 ---
 
@@ -76,6 +83,60 @@ Horizon :
 ≈ 10 ans avec upgrades ciblés
 ```
 
+## 2.1 Exigences utilisateur établies
+
+Affichage :
+
+- 39" 5K2K prioritaire ; 34" UWQHD compromis éventuel ;
+- trio d'écrans visuellement cohérent.
+
+Jeu AAA solo :
+
+- 60 fps moyens réellement rendus ; DLSS autorisé ; Frame Generation exclue du calcul ;
+- 90 fps souhaitables ; 120 fps en bonus ;
+- ray tracing partiel fortement souhaitable ; RT Ultra / Path Tracing facultatif.
+
+Jeu compétitif (CoD) :
+
+- 120 fps ou davantage et faible latence prioritaires.
+
+Autres usages :
+
+- virtualisation : scénarios alternatifs, non cumulés artificiellement ;
+- compilations et exports Premiere occasionnels, potentiellement lourds ;
+- Blender : progression débutant → intermédiaire, notamment modding de jeux vidéo ;
+- macOS : apprentissage de l'écosystème Apple, sans obligation de le faire tourner sur la tour ;
+- IA locale avancée : très long terme, hors dimensionnement 2026.
+
+## 2.2 Données utilisateur confirmées
+
+- licence Windows 11 Pro déjà disponible et support d'installation USB préparé → licence : 0 € ;
+- montage physique réalisé par l'utilisateur → prestation : 0 € ;
+- ne pas recommander un PC prémonté pour éviter l'assemblage ;
+- conserver les vérifications de compatibilité Windows 11 ;
+- budgéter uniquement les accessoires indispensables réellement manquants.
+
+Aucune clé de licence ni information personnelle n'est consignée dans le dépôt.
+
+## 2.3 Préférences secondaires
+
+RGB : **FACULTATIF**, purement esthétique, non éliminatoire, sans avantage fonctionnel présumé.
+
+- à performances, prix, fiabilité, acoustique et compatibilité comparables, une version RGB peut être préférée ;
+- RGB discret, configurable et désactivable préférable ;
+- pas de budget RGB réservé ; pas de surcoût significatif ; pas de sacrifice de performance, silence ou qualité ; pas de RGB imposé sur tous les composants.
+
+## 2.4 Stratégie Black Friday
+
+- fenêtre principale d'acquisition : 27 novembre 2026 ;
+- les prix d'octobre sont provisoires ; les promotions réelles sont inconnues ;
+- aucune remise n'est présumée ;
+- les configurations étudiées restent des bases techniques et alternatives, non définitives ;
+- ne pas figer une architecture sur les seuls prix d'octobre ;
+- plafond de 6 000 € maintenu pour le setup complet ;
+- distinguer objectif initial et compromis nécessaires pour tenir le budget ;
+- `NO-GO` reste une issue rationnelle si les offres réelles sont insuffisantes.
+
 ---
 
 # 3. État réel de la configuration
@@ -88,8 +149,41 @@ BOM RÉELLE :
 NON GELÉE
 
 RECHERCHE MARCHÉ :
-NON OUVERTE
+NON OUVERTE (prix indicatifs autorisés ; session d'acquisition à ouvrir explicitement)
 ```
+
+## 3.1 Résultats des simulations (31 octobre 2026) — PROVISOIRES
+
+Bases techniques à reprendre le jour J. Tous les choix de composants restent provisoires ; aucun ne constitue une décision d'achat.
+
+**Configuration A ajustée — préférence provisoire** (BOM candidate auditée par Codex : `BOM À CORRIGER` ; lignes bloquantes corrigées par Claude Code, correction non ré-auditée ; gel non prononcé) :
+
+| Poste | Référence provisoire |
+|---|---|
+| CPU | AMD Ryzen 7 9800X3D (100-100001084WOF) |
+| Ventirad | Thermalright Phantom Spirit 120 SE (154 mm) |
+| Carte mère | MSI MAG B850 TOMAHAWK MAX WIFI |
+| RAM | Corsair CMK64GX5M2B6000Z30 (2 × 32 Go DDR5-6000 CL30, EXPO ; QVL et stabilité à vérifier) |
+| GPU | ASUS PRIME-RTX5070TI-O16G (RTX 5070 Ti 16 Go) |
+| SSD | Samsung 990 PRO 2 To (MZ-V9P2T0BW), slot M2_1 |
+| Alimentation | Corsair RM850e (2025) CP-9020296-EU |
+| Boîtier | Fractal Design North TG Dark (FD-C-NOR1C-02) + ARCTIC P12 PWM (ACFAN00119A) en extraction |
+| Écran central | Alienware AW3926QW (39" 5K2K WOLED RVB, 165 Hz, DP 2.1 UHBR20, garantie 3 ans incluant le marquage) |
+| Écrans latéraux | 2 × Dell UltraSharp U2724D (27" QHD IPS Black 120 Hz), câbles DP fournis |
+| Câble central | Club 3D CAC-1091 (DP80, 1,2 m) ou CAC-1092 (1,6 m) |
+| Périphériques (PROPOSITION) | Logitech G515 LIGHTSPEED TKL FR (920-012546), Logitech G502 X filaire (référence à confirmer), HyperX Cloud III (727A8AA), Logitech C920 (960-001055, disponibilité à vérifier) |
+| Licence / montage | 0 € (voir §2.2) |
+
+Total estimé lors de la simulation (prix d'octobre, hors licence et montage) : ≈ 5 624 €, réserve ≈ 376 €. Hypothèses hautes : dépassement possible. Valeurs indicatives, à remplacer par les prix réels.
+
+**Configuration B — alternative / secours** : même socle, RTX 5080 16 Go + écran central 34" UWQHD OLED 240 Hz + 2 latéraux 27" QHD IPS. Conservée comme solution si l'objectif 5K2K ne tient pas le budget ou si la priorité compétitive/fps l'impose.
+
+Constats de simulation à réutiliser :
+
+- RTX 5090 hors budget aux prix d'octobre 2026 ;
+- RAM, SSD et GPU en forte hausse en octobre 2026 ; prix du Black Friday inconnus ;
+- performances 5K2K non mesurées de façon appariée pour les GPU retenus ;
+- largeur et profondeur du bureau non documentées (trio ≈ 2,1–2,2 m à plat).
 
 Les configurations C1 à C5, leurs variantes, les convergences observées pendant les simulations et les BOM de test ne constituent pas automatiquement des décisions d'achat réelles.
 
@@ -133,6 +227,8 @@ Règle majeure :
 
 > Aucune recherche commerciale systématique ne commence avant le gel de la BOM.
 
+Exception : session d'acquisition explicitement ouverte par le pilotage (manuel §32). Les offres réelles des références utiles sont alors relevées avant la BOM candidate, puis audit Codex, gel, validation panier et GO / NO-GO. Fonctionnement nominal des contrôles : composition complète → audit principal → validation ou correction ciblée (manuel §33).
+
 ---
 
 # 5. Répartition des rôles
@@ -170,6 +266,8 @@ urgence technique
 ```
 
 Claude Code ne gèle pas sa propre BOM et ne prononce pas le GO / NO-GO final.
+
+Pendant une session d'acquisition ouverte, Claude Code peut consulter directement les prix et disponibilités réels des références utiles (manuel §32). Cela ne vaut jamais autorisation d'achat.
 
 ## Codex V1.1
 
@@ -262,7 +360,9 @@ VARIABLE VÉRIFIÉE
 
 explicitement transmise dans le workflow.
 
-Les `PRIX INDICATIF` (relevés exploratoires datés et sourcés, transmis par le pilotage) sont autorisés avant le gel pour vérifier la faisabilité économique, selon le §31.3 du manuel. Ils ne valent ni prix au panier ni décision d'achat ; la recherche systématique de promotions reste interdite avant le gel.
+Les `PRIX INDICATIF` (relevés exploratoires datés et sourcés, transmis par le pilotage ou effectués sur autorisation explicite de la tâche) sont autorisés avant le gel pour vérifier la faisabilité économique, selon le §31.3 du manuel. Ils ne valent ni prix au panier ni décision d'achat ; la recherche systématique de promotions reste interdite avant le gel.
+
+Pendant une session d'acquisition explicitement ouverte, les restrictions ci-dessus sont levées pour les références utiles selon le §32 du manuel.
 
 ---
 
@@ -405,13 +505,19 @@ Un état provenant d'une autre session ou d'un autre agent ne doit pas servir à
 # 14. Prochaine action
 
 ```text
-PRODUIRE DEUX CONFIGURATIONS COMPLÈTES, RÉALISTES ET COMPARABLES
-→ AUDIT CODEX CIBLÉ
+PRÉPARATION OPÉRATIONNELLE
+→ SESSION D'ACQUISITION BLACK FRIDAY (27 novembre 2026, ouverture explicite par le pilotage)
 ```
 
-Règles applicables : manuel §31 (deux configurations, secours seulement si nécessaire ; un audit principal ; prix indicatifs autorisés ; incertitudes résiduelles explicites).
+Préparation :
 
-Ne pas ouvrir la recherche marché systématique avant le gel de la BOM.
+- partir des configurations A (préférence provisoire) et B (alternative) du §3.1 ;
+- configurations de secours actualisables les 24, 25 et 26 novembre (manuel §19–20) ;
+- lever avant la session, si possible, les incertitudes non commerciales : dimensions du bureau, variantes de références à confirmer.
+
+Jour J : procédure du manuel §32, contrôles selon §33.
+
+Ne pas ouvrir la recherche marché systématique avant l'ouverture explicite de la session d'acquisition.
 
 ---
 
@@ -419,7 +525,7 @@ Ne pas ouvrir la recherche marché systématique avant le gel de la BOM.
 
 ```text
 Guide-PC              ACTIF
-Manuel opérationnel   V2.1
+Manuel opérationnel   V2.2
 
 ChatGPT Web            V2 VALIDÉ
 Claude Web             V2.1 VALIDÉ
@@ -427,11 +533,17 @@ Claude Web             V2.1 VALIDÉ
 Claude Code            V1.1 VALIDÉ
 Codex                  V1.1 VALIDÉ
 
+Simulations CLI         CLÔTURÉES
+Config A (5K2K)         PRÉFÉRENCE PROVISOIRE
+Config B (UWQHD)        ALTERNATIVE / SECOURS
+
 Architecture réelle    NON GELÉE
 BOM réelle             NON GELÉE
 Marché                  NON OUVERT (prix indicatifs autorisés)
+Achat                   NON AUTORISÉ
 
-Benchmark CLI #1        CLÔTURÉ
+Licence Windows         EXISTANTE (0 €)
+Montage                 UTILISATEUR (0 €)
 
-Prochaine action        2 CONFIGURATIONS + AUDIT CODEX
+Prochaine action        PRÉPARATION → ACQUISITION BF 27/11
 ```

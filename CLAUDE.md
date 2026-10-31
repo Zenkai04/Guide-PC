@@ -64,7 +64,7 @@ Respecte les modes définis dans le manuel :
 En `MODE BOM` :
 
 - ne change pas silencieusement l'architecture ;
-- ne consulte pas volontairement le marché ou les comparateurs ;
+- hors session d'acquisition explicitement ouverte par le pilotage (manuel §32), ne consulte pas volontairement le marché ou les comparateurs ; pendant une telle session, les prix et disponibilités réels des références utiles sont autorisés, sans valoir autorisation d'achat ;
 - utilise les sources techniques pour vérifier les références ;
 - n'invente jamais un SKU ;
 - marque explicitement les choix non approuvés ;

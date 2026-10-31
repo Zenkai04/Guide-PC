@@ -197,6 +197,26 @@ TVA incluse ?
 
 Montage inclus ?
 
+Préciser :
+
+* montage réalisé par l'utilisateur (coût de prestation = 0) ;
+* montage payant (prestation à budgéter) ;
+* PC prémonté exigé.
+
+Un montage réalisé par l'utilisateur ne justifie pas, à lui seul, de recommander un PC prémonté.
+
+---
+
+Licence du système d'exploitation incluse ?
+
+Préciser :
+
+* licence existante réutilisable (édition, sans jamais consigner la clé) ;
+* licence à acquérir (édition et type) ;
+* support d'installation déjà disponible ou à prévoir.
+
+Une licence existante n'est pas budgétée. La compatibilité matérielle avec le système d'exploitation reste à vérifier.
+
 ---
 
 Écrans inclus ?
@@ -359,6 +379,12 @@ Boîtier conservé
 
 Licence Windows existante
 
+Édition (Famille / Professionnel) — ne jamais consigner la clé
+
+---
+
+Support d'installation du système disponible
+
 ---
 
 NAS
@@ -393,9 +419,14 @@ Esthétique
 
 RGB
 
-Oui
+Valeurs possibles :
 
-Non
+* Non (à éviter) ;
+* Indifférent ;
+* Facultatif — critère de départage uniquement ;
+* Requis.
+
+Sauf valeur « Requis », le RGB est une préférence purement esthétique, non éliminatoire, sans avantage fonctionnel présumé et sans budget réservé. Il ne justifie ni surcoût significatif, ni sacrifice de performance, de silence, de qualité ou de fiabilité.
 
 ---
 
