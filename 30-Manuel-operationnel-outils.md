@@ -1,7 +1,7 @@
 # Manuel d'utilisation des outils — Projet PC Black Friday 2026
 
-Version : 2.0
-Statut : baseline Web validée / à étendre après validation Claude Code et Codex
+Version : 2.1
+Statut : baseline Web validée + stratégie de décision pragmatique (§31) issue du benchmark CLI #1
 Mise à jour : 31 octobre 2026
 
 ---
@@ -52,6 +52,8 @@ Principe central de la version 2 :
 
 > Une architecture techniquement correcte n'est pas encore une liste d'achat.
 > La recherche commerciale ne commence qu'après production, audit et gel d'une BOM exploitable.
+
+Exception encadrée : relevés de prix indicatifs pour vérifier la faisabilité économique avant le gel (voir §31.3).
 
 ---
 
@@ -780,6 +782,8 @@ recherche systématique des prix = NON
 
 Les vérifications techniques constructeur restent autorisées.
 
+Les relevés de prix indicatifs définis au §31.3 restent autorisés ; ils ne constituent ni une recherche de deals ni une décision d'achat.
+
 ## 5.8 Recherche marché
 
 Après gel de la BOM :
@@ -1347,6 +1351,7 @@ KPI :
 
 ```text
 Temps début architecture → BOM gelée exploitable
+Temps humain d'orchestration (lecture, copier-coller, réponses aux agents)
 ```
 
 et, pour le marché :
@@ -1829,6 +1834,66 @@ architecture
 → validation finale
 ```
 
-Claude Code et Codex ne sont volontairement pas encore décrits comme agents opérationnels dans ce manuel.
+Claude Code et Codex ne sont pas encore décrits en détail comme agents opérationnels dans ce manuel.
 
-Ils seront ajoutés uniquement après configuration et tests dédiés.
+Leur bootstrap et le contrôle contradictoire CLI ont été validés par le benchmark CLI #1 (voir `31-Etat-operationnel.md`) ; leurs rôles et règles de démarrage sont définis par `31-Etat-operationnel.md`, `CLAUDE.md` et `AGENTS.md`.
+
+---
+
+# 31. Stratégie de décision pragmatique
+
+Adoptée après le benchmark CLI #1 (31 octobre 2026), qui a confirmé la qualité du contrôle contradictoire mais révélé un coût excessif en itérations et en interventions humaines.
+
+Ces règles complètent le workflow ; elles ne suppriment ni les critères éliminatoires, ni les contrôles de compatibilité, ni la traçabilité, ni la vérification des données, ni le gel obligatoire de la BOM avant le marché.
+
+## 31.1 Périmètre de l'étude initiale
+
+Limiter l'étude initiale à **deux configurations concrètes**, complètes et comparables.
+
+Une **solution de secours** n'est ajoutée que si elle est nécessaire (par exemple : risque budgétaire, de disponibilité ou d'échec d'un critère éliminatoire).
+
+## 31.2 Audit principal et itérations
+
+Effectuer **un audit Codex principal**.
+
+Une nouvelle itération n'est obligatoire que pour :
+
+- une incompatibilité ;
+- une violation d'exigence essentielle ;
+- une erreur budgétaire significative ;
+- un défaut susceptible de changer le choix.
+
+Les autres remarques sont consignées comme réserves, sans relancer de boucle.
+
+## 31.3 Prix indicatifs avant le gel
+
+Avant le gel de la BOM, des **prix indicatifs** et **relevés commerciaux exploratoires** sont autorisés afin de vérifier la faisabilité économique des configurations.
+
+Restent interdits avant le gel :
+
+- la recherche systématique de promotions et de deals ;
+- toute décision d'achat.
+
+Les relevés sont effectués ou transmis par le pilotage (ChatGPT ou utilisateur). Ils sont marqués `PRIX INDICATIF`, datés et sourcés. Ils ne valent ni prix au panier, ni stock, ni `VARIABLE VÉRIFIÉE`, ni engagement.
+
+Les règles propres aux agents restent inchangées : en MODE BOM, Claude ne consulte pas volontairement le marché ; Codex ne lance pas de recherche de deals.
+
+## 31.4 Incertitude résiduelle
+
+Accepter une **incertitude résiduelle explicite** lorsque des données parfaites sont indisponibles.
+
+Une donnée absente reste signalée comme absente. Ne jamais inventer de mesure, et ne pas transformer l'absence de mesure en échec ou en validation.
+
+## 31.5 Corrections sans effet sur la décision
+
+Éviter les corrections purement rédactionnelles ou méthodologiques qui ne changent pas la décision.
+
+Question de contrôle avant toute relance :
+
+> Cette correction peut-elle changer la configuration retenue, sa conformité ou son budget ?
+
+Si non : la noter, ne pas itérer.
+
+## 31.6 Temps humain
+
+Mesurer aussi le **temps humain consacré à l'orchestration** (lecture, copier-coller, réponses aux agents), en plus du temps des agents (voir §14).

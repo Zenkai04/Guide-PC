@@ -81,6 +81,20 @@ Distingue explicitement :
 
 Une donnée inconnue reste inconnue.
 
+## Rigueur des conclusions (MODE NORMAL)
+
+Enseignement du premier benchmark Claude Code ↔ Codex (31 octobre 2026) :
+
+- une exclusion n'est éliminatoire que si elle découle d'une exigence explicitement approuvée ; sinon, la présenter comme conditionnelle, avec sa condition de rejet et de réouverture ;
+- ne pas introduire de seuil chiffré (RAM, fps, écart de prix…) absent du dépôt sans le marquer PROPOSITION et le justifier ;
+- ne pas réutiliser les scores ou indices des `Compositions/` historiques pour classer des candidates dont le contenu a changé ;
+- ne comparer des mesures que si elles sont appariées (mêmes jeux, réglages, protocole) ; garder un dénominateur constant pour les écarts relatifs ;
+- comparer les candidates à socle strictement identique pour isoler la variable étudiée ;
+- une caractéristique de dimensionnement (TGP, PPI…) n'est ni une mesure de consommation ni un réglage imposé ;
+- l'absence d'une exigence ne vaut pas approbation de l'alternative ;
+- un composant commun à toutes les candidates, ou une convergence entre agents, ne le valide pas ;
+- si la mission n'est pas quantifiée, ne pas classer : lister les exigences utilisateur nécessaires.
+
 ## Modifications du dépôt
 
 Ne modifie pas le corpus normatif ou l'état opérationnel sauf demande explicite.

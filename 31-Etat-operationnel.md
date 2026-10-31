@@ -1,7 +1,7 @@
 # État opérationnel — Projet PC Black Friday 2026
 
 Dernière mise à jour : 31 octobre 2026  
-Statut : agents Web et CLI bootstrap validés ; benchmark CLI à lancer
+Statut : benchmark CLI #1 clôturé ; stratégie de décision pragmatique adoptée
 
 ---
 
@@ -9,7 +9,7 @@ Statut : agents Web et CLI bootstrap validés ; benchmark CLI à lancer
 
 ```text
 PHASE :
-VALIDATION DES AGENTS
+COMPOSITION RÉELLE — STRATÉGIE PRAGMATIQUE
 
 ÉTAT :
 ChatGPT Web V2      VALIDÉ
@@ -18,13 +18,14 @@ Claude Code V1.1    VALIDÉ
 Codex V1.1          VALIDÉ
 ```
 
-Les agents CLI ont réussi leur test de bootstrap depuis le dépôt.
+Benchmark CLI #1 (31 octobre 2026) :
 
-Prochaine étape :
+- durée : ≈ 17 min pour la première boucle, suivie d'analyses complémentaires ;
+- Claude Code et Codex : bootstrap et contrôle contradictoire validés ;
+- constat : contrôle de qualité, mais coût excessif en itérations et en interventions humaines ;
+- aucune architecture réelle ni BOM approuvée.
 
-```text
-BENCHMARK CLAUDE CODE ↔ CODEX
-```
+Les règles de décision pragmatique sont définies au §31 du manuel `30-Manuel-operationnel-outils.md`.
 
 ---
 
@@ -35,10 +36,19 @@ Choisir, composer puis acheter un setup PC complet pour le Black Friday 2026.
 Budget de référence :
 
 ```text
-≈ 6 000 € maximum
+6 000 € maximum pour le setup complet
 ```
 
-Le budget couvre l'ensemble du setup prévu, notamment la tour et le trio d'écrans.
+Le budget couvre l'ensemble du setup prévu : tour, trio d'écrans, périphériques, supports et câbles.
+
+Affichage :
+
+```text
+39" 5K2K          OBJECTIF PRIORITAIRE
+UWQHD             COMPROMIS ÉVENTUEL
+```
+
+IA locale : besoin à très long terme, hors dimensionnement 2026.
 
 Principe :
 
@@ -252,6 +262,8 @@ VARIABLE VÉRIFIÉE
 
 explicitement transmise dans le workflow.
 
+Les `PRIX INDICATIF` (relevés exploratoires datés et sourcés, transmis par le pilotage) sont autorisés avant le gel pour vérifier la faisabilité économique, selon le §31.3 du manuel. Ils ne valent ni prix au panier ni décision d'achat ; la recherche systématique de promotions reste interdite avant le gel.
+
 ---
 
 # 8. Priorités du système
@@ -310,7 +322,15 @@ Première production de BOM Claude Web :
 ≈ 5 à 10 min
 ```
 
+Benchmark CLI #1, première boucle Claude Code ↔ Codex :
+
+```text
+≈ 17 min, suivies d'analyses complémentaires
+```
+
 Ces mesures sont exploratoires.
+
+Le temps humain d'orchestration est désormais mesuré en plus du temps des agents.
 
 KPI préparation :
 
@@ -385,27 +405,13 @@ Un état provenant d'une autre session ou d'un autre agent ne doit pas servir à
 # 14. Prochaine action
 
 ```text
-LANCER LE PREMIER BENCHMARK CLAUDE CODE ↔ CODEX
+PRODUIRE DEUX CONFIGURATIONS COMPLÈTES, RÉALISTES ET COMPARABLES
+→ AUDIT CODEX CIBLÉ
 ```
 
-Objectif :
+Règles applicables : manuel §31 (deux configurations, secours seulement si nécessaire ; un audit principal ; prix indicatifs autorisés ; incertitudes résiduelles explicites).
 
-tester la boucle CLI :
-
-```text
-Claude Code — MODE NORMAL
-→ Codex — audit contradictoire
-→ Claude Code — correction si nécessaire
-→ consensus architectural
-→ Claude Code — MODE BOM
-→ Codex — audit BOM
-→ corrections éventuelles
-→ BOM GELÉE
-```
-
-Pour ce premier benchmark, arrêter le test au gel de la BOM.
-
-Ne pas ouvrir encore la recherche marché réelle.
+Ne pas ouvrir la recherche marché systématique avant le gel de la BOM.
 
 ---
 
@@ -413,7 +419,7 @@ Ne pas ouvrir encore la recherche marché réelle.
 
 ```text
 Guide-PC              ACTIF
-Manuel opérationnel   V2
+Manuel opérationnel   V2.1
 
 ChatGPT Web            V2 VALIDÉ
 Claude Web             V2.1 VALIDÉ
@@ -423,7 +429,9 @@ Codex                  V1.1 VALIDÉ
 
 Architecture réelle    NON GELÉE
 BOM réelle             NON GELÉE
-Marché                  NON OUVERT
+Marché                  NON OUVERT (prix indicatifs autorisés)
 
-Prochaine action        BENCHMARK CLI
+Benchmark CLI #1        CLÔTURÉ
+
+Prochaine action        2 CONFIGURATIONS + AUDIT CODEX
 ```
