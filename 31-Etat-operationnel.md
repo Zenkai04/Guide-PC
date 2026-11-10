@@ -1,6 +1,6 @@
 # État opérationnel — Projet PC Black Friday 2026
 
-Dernière mise à jour : 31 octobre 2026  
+Dernière mise à jour : 10 novembre 2026 (test à blanc d'acquisition n°4, §3.2)  
 Statut : simulations Claude Code ↔ Codex clôturées ; préparation opérationnelle avant acquisition Black Friday
 
 ---
@@ -47,6 +47,18 @@ Budget de référence :
 ```
 
 Le budget couvre l'ensemble du setup prévu : tour, trio d'écrans, périphériques, supports et câbles.
+
+Marge exceptionnelle (décision utilisateur, 10 novembre 2026) :
+
+- 500 € supplémentaires au plus, **qui ne constituent pas un budget normal de 6 500 €** ;
+- jamais consommés automatiquement ; réservés à une opportunité exceptionnellement rentable ;
+- attente indicative : rapport bénéfices/coût supérieur d'environ 20 % ou davantage à la meilleure solution ≤ 6 000 €, gains étayés, sans score global arbitraire ;
+- toute exception est soumise explicitement à l'utilisateur, jamais validée par un agent ;
+- produire d'abord la meilleure solution ≤ 6 000 € ; ne pas fabriquer de variante à 6 500 € sans opportunité réelle.
+
+Qualité de l'investissement : une BOM conforme et sous le plafond ne suffit pas à justifier l'achat. Distinguer bonne affaire, prix normal, composant surévalué et configuration acceptable mais peu attractive. `ATTENDRE / NO-GO COMMERCIAL` reste possible même avec une BOM complète sous budget.
+
+RAM : 64 Go est une préférence pertinente (polyvalence, durée de vie), non un minimum éliminatoire démontré. Un choix 32 Go est un compromis à expliciter et à faire accepter par l'utilisateur.
 
 Affichage :
 
@@ -188,6 +200,51 @@ Constats de simulation à réutiliser :
 Les configurations C1 à C5, leurs variantes, les convergences observées pendant les simulations et les BOM de test ne constituent pas automatiquement des décisions d'achat réelles.
 
 Une ancienne convergence de simulation vers C2 reste un résultat de test tant qu'elle n'est pas explicitement approuvée dans le workflow réel.
+
+## 3.2 Test à blanc d'acquisition n°4 (10 novembre 2026) — SIMULATION
+
+Session d'acquisition ouverte **en simulation uniquement** ; aucun achat, aucun gel réel. Production Claude Code (SIM4-V1), audit Codex, correction ciblée (SIM4-V2), contrôle Codex des corrections sans nouvelle boucle.
+
+**Résultat :** `SIM4-V2 — BOM INCOMPLÈTE — NE PAS GELER` ; verdict `ATTENDRE — NO-GO SIMULÉ AU 10/11`. Aucune recomposition nécessaire ; aucune exception au-delà de 6 000 € démontrée.
+
+Corrections locales de la configuration A retenues en simulation (toutes `PROPOSITION`, non approuvées) :
+
+| Poste | SIM4-V2 | Prix observé 10/11 |
+|---|---|---|
+| CPU | Ryzen 7 9800X3D **tray** (SAV via revendeur) | 449,95 € LDLC |
+| Ventirad | Thermalright Phantom Spirit 120 **non-SE** (157 mm) | 64,95 € LDLC |
+| Carte mère | MSI MAG B850 TOMAHAWK WIFI (non-MAX) | 299,95 € LDLC |
+| RAM | G.Skill F5-6000J3636F16GX2-RM5NRK, **2 × 16 Go** DDR5-6000 CL36 EXPO — compromis 32 Go **non validé** | 695,95 € LDLC |
+| GPU | MSI RTX 5070 Ti 16G VENTUS 3X OC — **offre non sécurisée** | 1 402,95 € Amazon (via comparateur, non vérifié) ; 1 649,95 € LDLC (sous 7 j) |
+| SSD | Samsung 990 EVO Plus 2 To (TLC, HMB, compromis de gamme vs 990 PRO) | 399,95 € LDLC |
+| Alim / boîtier | RM850e (2025) / North TG Dark (+ ARCTIC P12 facultatif) | 134,95 € / 139,95 € LDLC |
+| Écrans | AW3926QW + 2 × U2724D | 1 249 € Dell / 2 × 352,99 € PcComponentes |
+| Câble central | **Supprimé** : HDMI 2.1 FRL fourni par Dell (5K2K 165 Hz avec DSC) ; latéraux en DP | 0 € |
+| Périphériques | G515 TKL Lightspeed, G502 X filaire, Cloud III, C920s | 349,80 € LDLC |
+
+Budget (hors livraison) : sous-total sans GPU 4 499,38 € ; avec GPU Amazon 5 902,33 € ; avec Gainward RTX 5070 Ti Phoenix-S LDLC 1 619,95 € (moins chère vérifiée en stock) 6 119,33 € — **hors budget** ; variante 64 Go 6 486,37 € — exception non démontrée.
+
+Seuil de faisabilité GPU (avec 32 Go) : **prix GPU livraison comprise ≤ 1 500,62 € − F**, F = frais de livraison des autres achats. Condition de faisabilité, pas critère de bonne affaire.
+
+Constats de marché (relevés datés, non prédictifs) :
+
+- minimum LDLC en stock de la catégorie RTX 5070 Ti : 1 349,95 € (13/09), 1 479,95 € (04/11), 1 619,95 € (10/11) — suivi de catégorie, pas de la même référence ; hausses partenaires annoncées ;
+- 9800X3D tray LDLC : 499,95 € (01/11) → 449,95 € (10/11) ;
+- kits 64 Go DDR5-6000 ≈ 1 280–1 300 € ; AW3926QW stable à 1 249 €.
+
+Points ouverts reportés au jour J :
+
+- offre GPU livrée sous le seuil, chez un vendeur acceptable (une Gainward ou autre substitution exige ses propres contrôles de dépendances) ;
+- frais réels au panier (LDLC calculés au panier ; Dell, Amazon inconnus) ;
+- choix 32 / 64 Go : décrire le plus gros scénario de virtualisation (nombre de VM, RAM par VM, charge hôte simultanée) ;
+- dégagement RAM/ventirad (≈ 41 mm pour 42 mm, non officiel) : relever le ventilateur, hauteur installée ≤ 170 mm à confirmer ;
+- performances 5K2K et CoD non mesurées : incertitude documentée (§31.4), ni validation ni échec.
+
+Enseignements de méthode :
+
+- qualifier une offre par des relevés appariés (même référence, même marchand, dates différentes) ; un prix conseillé ou un indice de catégorie DRAM/NAND ne qualifie pas une offre précise ;
+- un prix vu sur comparateur n'est pas une offre sécurisée (vendeur, stock, prix livré à vérifier) ;
+- tableau budgétaire reproductible ligne par ligne, frais traités comme variable explicite tant qu'ils ne sont pas relevés.
 
 ---
 
@@ -513,7 +570,8 @@ Préparation :
 
 - partir des configurations A (préférence provisoire) et B (alternative) du §3.1 ;
 - configurations de secours actualisables les 24, 25 et 26 novembre (manuel §19–20) ;
-- lever avant la session, si possible, les incertitudes non commerciales : dimensions du bureau, variantes de références à confirmer.
+- lever avant la session, si possible, les incertitudes non commerciales : dimensions du bureau, variantes de références à confirmer ;
+- reprendre les points ouverts du test à blanc n°4 (§3.2), notamment la décision 32 / 64 Go et le seuil GPU.
 
 Jour J : procédure du manuel §32, contrôles selon §33.
 
@@ -536,6 +594,8 @@ Codex                  V1.1 VALIDÉ
 Simulations CLI         CLÔTURÉES
 Config A (5K2K)         PRÉFÉRENCE PROVISOIRE
 Config B (UWQHD)        ALTERNATIVE / SECOURS
+Test à blanc n°4        SIM4-V2 INCOMPLÈTE — NO-GO SIMULÉ (10/11)
+Budget                  6 000 € + marge exceptionnelle 500 € (sur accord explicite)
 
 Architecture réelle    NON GELÉE
 BOM réelle             NON GELÉE
