@@ -1,7 +1,7 @@
 MODE : AUDIT CONTRADICTOIRE — SIMULATION N°4
 
 SESSION DE SIMULATION UNIQUEMENT.
-Date de référence : 10 novembre 2026.
+Date de référence : [DATE]
 
 Audite la BOM candidate suivante de Claude Code :
 

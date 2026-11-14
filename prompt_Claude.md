@@ -2,7 +2,7 @@ MODE : SIMULATION D'ACQUISITION — TEST À BLANC N°4
 
 SESSION D'ACQUISITION OUVERTE — SIMULATION UNIQUEMENT
 
-Date de référence : 10 novembre 2026.
+Date de référence : [DATE].
 Aucun achat réel autorisé.
 Aucune modification du dépôt.
 

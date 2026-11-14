@@ -1,6 +1,6 @@
 # État opérationnel — Projet PC Black Friday 2026
 
-Dernière mise à jour : 10 novembre 2026 (test à blanc d'acquisition n°4, §3.2)  
+Dernière mise à jour : 14 novembre 2026 (test à blanc d'acquisition n°4, §3.2 ; reprise du 14/11, §3.3)  
 Statut : simulations Claude Code ↔ Codex clôturées ; préparation opérationnelle avant acquisition Black Friday
 
 ---
@@ -114,7 +114,12 @@ Jeu compétitif (CoD) :
 
 Autres usages :
 
-- virtualisation : scénarios alternatifs, non cumulés artificiellement ;
+- virtualisation : trois scénarios **alternatifs**, jamais exécutés simultanément entre eux ni avec un jeu lourd et Blender :
+  1. Windows Server + 3 à 5 clients légers simultanés (administration, connexions, opérations simples) — scénario dimensionnant ;
+  2. une VM isolée de test de logiciels, à un autre moment ;
+  3. expérimentations Linux ou autres systèmes, séparées ;
+- dimensionnement indicatif du scénario 1 (ESTIMATION utilisateur) : Server 6 Go + 5 clients × 2 Go + hôte 8 Go = 24 Go ; avec des clients à 4 Go (minimum Windows 11), 34 Go ;
+- RAM : **64 Go = objectif privilégié** (polyvalence, longévité) ; **32 Go = compromis économique acceptable uniquement après confirmation explicite de l'utilisateur avant l'achat** ; critère pratique : 32 Go conformes avec clients Linux légers ou ≤ 4 clients Windows 11, non conformes avec 5 clients Windows 11 ;
 - compilations et exports Premiere occasionnels, potentiellement lourds ;
 - Blender : progression débutant → intermédiaire, notamment modding de jeux vidéo ;
 - macOS : apprentissage de l'écosystème Apple, sans obligation de le faire tourner sur la tour ;
@@ -245,6 +250,40 @@ Enseignements de méthode :
 - qualifier une offre par des relevés appariés (même référence, même marchand, dates différentes) ; un prix conseillé ou un indice de catégorie DRAM/NAND ne qualifie pas une offre précise ;
 - un prix vu sur comparateur n'est pas une offre sécurisée (vendeur, stock, prix livré à vérifier) ;
 - tableau budgétaire reproductible ligne par ligne, frais traités comme variable explicite tant qu'ils ne sont pas relevés.
+
+## 3.3 Reprise du test à blanc n°4 (14 novembre 2026) — SIMULATION
+
+Production Claude Code (SIM4-V3), audit Codex, correction ciblée (SIM4-V3.1) sans nouvelle boucle. Aucun achat, aucun gel, aucun fichier de composition produit.
+
+**Résultat :** architecture A **techniquement crédible**, **correction locale** (pas de recomposition) ; `BOM À CORRIGER — NON GELABLE` (choix 32 / 64 Go non confirmé, vendeur des latéraux non validé, total livré non établi) ; verdict `ATTENDRE — NO-GO COMMERCIAL SIMULÉ AU 14/11`. Aucune extension au-delà de 6 000 € justifiée.
+
+Socle SIM4-V2 inchangé, sauf GPU : MSI RTX 5070 Ti 16G VENTUS 3X OC chez GrosBill.
+
+Prix observés le 14/11 — **observations historiques datées, non objectifs ni seuils d'achat** :
+
+| Référence | Prix observé 14/11 | Vendeur / état |
+|---|---|---|
+| MSI RTX 5070 Ti VENTUS 3X OC | 1 449,99 € (barré 1 589,99 €) | GrosBill, en stock web, promo sans date de fin |
+| Minimum RTX 5070 Ti LDLC (Gainward Phoenix-S) | 1 679,95 € | LDLC, en stock (1 619,95 € le 10/11) |
+| RTX 5080 la moins chère (Gainward Python III) | 2 199,95 € | LDLC |
+| Ryzen 7 9800X3D tray | 449,95 € | LDLC, en stock |
+| B850 TOMAHAWK WIFI / Phantom Spirit 120 / RM850e / North TG Dark | 299,95 / 64,95 / 134,95 / 139,95 € | LDLC, en stock |
+| G.Skill 2 × 16 Go RM5NRK | 695,95 € | LDLC, en stock (identique au 10/11) |
+| Kits 2 × 32 Go DDR5-6000 neufs | 1 299,95 € (Aegis 5, 7–15 j) ; 1 399,95 € (RM5NRW, en stock) | LDLC |
+| Samsung 990 EVO Plus 2 To / 990 PRO 2 To | 399,95 / 549,95 € | LDLC |
+| AW3926QW | 1 249 € (fiche) ; 1 149 € (autre page Dell, non établi comme commandable) | Dell FR |
+| U2724D | 351,04 € (marketplace « You Get », non validé) ; 408,16 € | PcComponentes ; Dell FR |
+| Périphériques (G515 TKL, G502 X, Cloud III, C920s) | 349,80 € | LDLC (Cloud III : délai > 15 j) |
+
+Budget (hors frais non relevés) : 5 936,52 € ; frais admissibles ≤ 63,48 €. Latéraux Dell directs : 6 050,76 € (+ frais) avec central à 1 249 € ; sous 6 000 € seulement si le central à 1 149 € est confirmé. 64 Go : ≥ 6 440 € avant frais dans tous les cas observés, hors budget.
+
+Qualification économique : faisabilité conditionnelle, **bonne affaire non démontrée**. Aucun historique apparié pour la Ventus ; les qualifications « surprix », « prix normal » ou « meilleure offre » ont été retirées faute de relevés appariés. Un GPU à ≈ 1 450 € est un repère de faisabilité, pas un déclencheur d'achat.
+
+Compatibilités confirmées par l'audit : Ventus 303 mm (North 355 mm) ; 750 W recommandés, 12V-2x6 natif RM850e ; RAM 41 mm, ventirad 157 mm (limite 170 mm) ; câbles HDMI 2.1 FRL (AW3926QW) et DP (U2724D) fournis ; têtes d'affichage NVIDIA 2 (DSC) + 1 + 1 = 4 — déduction technique sans essai physique.
+
+**Performances non validées :** AAA à 60 fps réellement rendus en 5K2K et CoD ≥ 120 fps avec la RTX 5070 Ti restent **non mesurés** ; la capacité 5K2K 165 Hz de la liaison ne prouve pas les performances de rendu (§31.4 : ni validation, ni échec).
+
+Conditions de GO (au-delà du plafond) : choix RAM confirmé par l'utilisateur, vendeurs validés, disponibilité simultanée de toutes les lignes, total livré réel ≤ 6 000 €, intérêt économique étayé.
 
 ---
 
@@ -571,7 +610,7 @@ Préparation :
 - partir des configurations A (préférence provisoire) et B (alternative) du §3.1 ;
 - configurations de secours actualisables les 24, 25 et 26 novembre (manuel §19–20) ;
 - lever avant la session, si possible, les incertitudes non commerciales : dimensions du bureau, variantes de références à confirmer ;
-- reprendre les points ouverts du test à blanc n°4 (§3.2), notamment la décision 32 / 64 Go et le seuil GPU.
+- reprendre les points ouverts du test à blanc n°4 (§3.2–3.3), notamment la confirmation 32 / 64 Go (OS et nombre des clients légers), le prix commandable de l'AW3926QW, le vendeur des latéraux et le seuil GPU.
 
 Jour J : procédure du manuel §32, contrôles selon §33.
 
@@ -595,6 +634,8 @@ Simulations CLI         CLÔTURÉES
 Config A (5K2K)         PRÉFÉRENCE PROVISOIRE
 Config B (UWQHD)        ALTERNATIVE / SECOURS
 Test à blanc n°4        SIM4-V2 INCOMPLÈTE — NO-GO SIMULÉ (10/11)
+Reprise 14/11           SIM4-V3.1 CRÉDIBLE, À CORRIGER — NO-GO COMMERCIAL SIMULÉ
+RAM                     64 Go PRIVILÉGIÉS ; 32 Go SUR CONFIRMATION UTILISATEUR
 Budget                  6 000 € + marge exceptionnelle 500 € (sur accord explicite)
 
 Architecture réelle    NON GELÉE
